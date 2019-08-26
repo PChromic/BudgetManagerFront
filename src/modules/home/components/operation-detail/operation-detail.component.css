@@ -1,0 +1,18 @@
+.operation-detail {
+  border: 1px gray solid;
+  padding: 15px;
+}
+
+.detail {
+  font-family: "Verdana", sans-serif;
+}
+
+.description {
+  border: 1px blue solid;
+  font-style: italic;
+  padding-left: 5px;
+}
+
+.type {
+  font-style: italic;
+}

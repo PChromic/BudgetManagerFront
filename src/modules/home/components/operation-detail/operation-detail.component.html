@@ -1,0 +1,9 @@
+<div class = "operation-detail">
+  <h3 class = "type">{{operation.transactionType}}</h3>
+  <h3 class = "detail">{{operation.operationClass}}</h3>
+  <h3 class = "detail">{{operation.operationDate}}</h3>
+  <h3 class = "detail" [ngStyle] = "{'color': getColor(operation.operationClass)}">{{operation.amount}}</h3>
+  <h3 class = "detail">{{operation.currency}}</h3>
+  <h3 class = "detail">{{operation.endingBalance}}</h3>
+  <h3 class = "description">{{operation.description}}</h3>
+</div>

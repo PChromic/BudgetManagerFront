@@ -1,0 +1,37 @@
+<p>operation-list works!</p>
+
+<label>
+  Open file dialog
+  <input type="file" (change)="getFilePath($event)"/>
+</label>
+
+
+<div>
+  <div>
+    <table>
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">OperationDate</th>
+        <th scope="col">OperationClass</th>
+        <th scope="col">TransactionType</th>
+        <th scope="col">Amount</th>
+        <th scope="col">Currency</th>
+        <th scope="col">Balance</th>
+        <th scope="col">Description</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let operation of operations">
+        <td>{{ operation.operationDate }}</td>
+        <td>{{ operation.operationClass }}</td>
+        <td>{{ operation.transactionType }}</td>
+        <td>{{ operation.amount }}</td>
+        <td>{{ operation.endingBalance }}</td>
+        <td><button (click)="getDetails(operation.id)">Szczegoly</button></td>
+        <td><a [routerLink]="[operation.id]" (click)="getDetails(operation.id)">Szczegoly</a></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
