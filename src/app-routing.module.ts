@@ -9,11 +9,9 @@ import {OperationDetailComponent} from './modules/home/components/operation-deta
 
 const routes: Routes = [
   {path:'', redirectTo:'/home', pathMatch: 'full'},
-  {path: 'operations', component: OperationListComponent,
-    children: [
-      {path: ':id', component: OperationDetailComponent}
-    ]
-  },
+  {path: 'operations', component: OperationListComponent},
+  {path: 'operations/:id', component: OperationDetailComponent},
+
   {path: 'dashboard', component: DashboardComponent },
   {path: 'user/:id', component:UserComponent ,
     children: [

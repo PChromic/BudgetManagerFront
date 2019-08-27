@@ -1,6 +1,10 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, Output} from '@angular/core';
 import {Operation} from '../../classes/Operation';
 import {OperationService} from '../../../../core/services/operation.service';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
+import {OperationItemComponent} from '../operation-item/operation-item.component';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-operation-detail',
@@ -8,17 +12,23 @@ import {OperationService} from '../../../../core/services/operation.service';
   styleUrls: ['./operation-detail.component.css']
 })
 export class OperationDetailComponent implements OnInit {
-  operation: Operation;
-  id: number;
-  constructor(private operationService: OperationService) {}
+
+  operation$: Observable<Operation>;
+
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private readonly service: OperationService) {
+  }
 
   ngOnInit() {
-    this.operationService.getDetails(this.id)
-      .subscribe(data => this.operation = data);
+    this.operation$ = this.route.paramMap.pipe(
+      switchMap((params: ParamMap) =>
+        this.service.getDetails(params.get('id'))));
   }
 
   getColor(operationClass: string) {
-    if(operationClass === "DEBIT")
+    if (operationClass === 'DEBIT')
       return 'red';
     return 'green';
   }

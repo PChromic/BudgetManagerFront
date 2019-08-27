@@ -3,6 +3,7 @@ import {Observable} from 'rxjs';
 import {HttpService} from '../http/http.service';
 import {Operation} from '../../modules/home/classes/Operation';
 import {HttpParams} from '@angular/common/http';
+import {environment} from '../../environments/environment';
 
 
 @Injectable({
@@ -11,10 +12,10 @@ import {HttpParams} from '@angular/common/http';
 export class OperationService {
 
   private operationsUrl: string;
-
+  private selectedOperation : Operation;
 
   constructor(private httpService: HttpService) {
-    this.operationsUrl = 'http://localhost:8080/operations';
+    this.operationsUrl = environment.baseUrl+'/operations';
 
   }
 
@@ -26,12 +27,11 @@ export class OperationService {
     return this.httpService.http.post<Operation>(this.operationsUrl, operation);
   }
 
-  public getDetails(id: number): Observable<Operation>{
+  public getDetails(id: string): Observable<Operation>{
     console.log("getDetails() works");
-    let url = this.operationsUrl+id;
-    console.log(url);
-
-    return this.httpService.http.get<Operation>(url);
+    console.log(id);
+    return this.httpService.http.get<Operation>(this.operationsUrl+`/${id}`)
   }
+
 
 }

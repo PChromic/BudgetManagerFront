@@ -14,10 +14,10 @@ import {OperationDetailComponent} from './modules/home/components/operation-deta
 import {OperationListComponent} from './modules/home/components/operation-list/operation-list.component';
 import {OperationService} from './core/services/operation.service';
 import {HttpClientModule} from '@angular/common/http';
-import {Operation} from './modules/home/classes/Operation';
 import { PageNotFoundComponent } from './core/page-not-found/page-not-found.component';
 import {FileService} from './core/services/backend/file.service';
 import {HttpService} from './core/http/http.service';
+import { OperationItemComponent } from './modules/home/components/operation-item/operation-item.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +30,8 @@ import {HttpService} from './core/http/http.service';
     UserDetailsComponent,
     OperationDetailComponent,
     OperationListComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    OperationItemComponent
   ],
   imports: [
     BrowserModule,
