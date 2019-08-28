@@ -15,8 +15,10 @@
       <th scope="col">Amount</th>
     </tr>
     </thead>
-    <tbody *ngFor="let operation of operations$ ">
-      <app-operation-item [operation]="operation" ></app-operation-item>
+    <tbody>
+      <tr *ngFor="let operation of operations$">
+        <app-operation-item [operation]="operation" ></app-operation-item>
+      </tr>
     </tbody>
   </table>
 

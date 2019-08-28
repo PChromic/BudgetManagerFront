@@ -15,7 +15,6 @@ export class FileService {
 
   public getFilePath(filePath: string ) {
     // var x = document.getElementById("myFile").value;
-
       this.openFile(filePath);
       this.readFile();
 

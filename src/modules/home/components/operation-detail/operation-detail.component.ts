@@ -3,7 +3,6 @@ import {Operation} from '../../classes/Operation';
 import {OperationService} from '../../../../core/services/operation.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
-import {OperationItemComponent} from '../operation-item/operation-item.component';
 import {Observable} from 'rxjs';
 
 @Component({
