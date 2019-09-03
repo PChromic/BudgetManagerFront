@@ -1,11 +1,10 @@
-import {Component, OnInit, Optional} from '@angular/core';
+import {Component, OnInit, Optional, QueryList, ViewChildren} from '@angular/core';
 
 import {OperationService} from '../../../../core/services/operation.service';
 import {FileService} from '../../../../core/services/backend/file.service';
-import {Operation} from '../../classes/Operation';
+import {Operation} from '../../classes/operation';
 import {Observable} from 'rxjs';
 import {ActivatedRoute} from '@angular/router';
-import {switchMap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-operation-list',
@@ -14,22 +13,24 @@ import {switchMap} from 'rxjs/operators';
 })
 export class OperationListComponent implements OnInit {
 
- /* operations: Operation[];
-  selectedOperation: Operation;*/
+  /* operations: Operation[];
+   selectedOperation: Operation;*/
 
   operations$: Operation[];
-  selectedId: number;
 
   constructor(
     private route: ActivatedRoute,
     private fileService: FileService,
-              private service: OperationService) {
+    private service: OperationService) {
   }
 
   ngOnInit() {
-
     this.service.findAll()
-      .subscribe(data => {this.operations$ = data;});
+      .subscribe(data => {
+          this.operations$ = data;
+        },
+        err => console.error(err),
+        () => console.log('done loading operations'));
   }
 
   getFilePath(event) {
@@ -39,12 +40,12 @@ export class OperationListComponent implements OnInit {
     }
   }
 
-/*  getDetails(index: number): void {
-    console.log(this.operations[index].id);
-    this.operationService.getDetails(this.operations[index].id)
-      .subscribe(data => {this.selectedOperation = data});
-    console.log(this.selectedOperation);
-   }*/
+  /*  getDetails(index: number): void {
+      console.log(this.operations[index].id);
+      this.operationService.getDetails(this.operations[index].id)
+        .subscribe(data => {this.selectedOperation = data});
+      console.log(this.selectedOperation);
+     }*/
 
 
 }

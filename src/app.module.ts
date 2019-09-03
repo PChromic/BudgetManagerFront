@@ -5,8 +5,6 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {FooterComponent} from './core/footer/footer.component';
 import {HeaderComponent} from './core/header/header.component';
-import {ExpensesComponent} from './modules/home/components/expenses/expenses.component';
-import {DashboardComponent} from './modules/home/components/dashboard/dashboard.component';
 import {UserComponent} from './modules/home/components/user/user.component';
 import {UserDetailsComponent} from './modules/home/components/user/user-details/user-details.component';
 import {OperationDetailComponent} from './modules/home/components/operation-detail/operation-detail.component';
@@ -18,25 +16,39 @@ import { PageNotFoundComponent } from './core/page-not-found/page-not-found.comp
 import {FileService} from './core/services/backend/file.service';
 import {HttpService} from './core/http/http.service';
 import { OperationItemComponent } from './modules/home/components/operation-item/operation-item.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { HomeComponent } from './modules/home/components/home/home.component';
+import { ReportComponent } from './modules/home/components/report/report.component';
+import { ExpenseListComponent } from './modules/home/components/expense-list/expense-list.component';
+import { ExpenseDetailComponent } from './modules/home/components/expense-detail/expense-detail.component';
+import { ExpenseEditorComponent } from './modules/home/components/expense-editor/expense-editor.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     FooterComponent,
     HeaderComponent,
-    ExpensesComponent,
-    DashboardComponent,
     UserComponent,
     UserDetailsComponent,
     OperationDetailComponent,
     OperationListComponent,
     PageNotFoundComponent,
-    OperationItemComponent
+    OperationItemComponent,
+    HomeComponent,
+    ReportComponent,
+    ExpenseListComponent,
+    ExpenseDetailComponent,
+    ExpenseEditorComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [OperationService,FileService,HttpService],
   bootstrap: [AppComponent]

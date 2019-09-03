@@ -1,5 +1,5 @@
 import {Component, Input, OnInit, Output} from '@angular/core';
-import {Operation} from '../../classes/Operation';
+import {Operation} from '../../classes/operation';
 import {OperationService} from '../../../../core/services/operation.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';

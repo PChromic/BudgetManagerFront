@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Operation} from '../../classes/Operation';
+import {Operation} from '../../classes/operation';
 import {OperationService} from '../../../../core/services/operation.service';
 
 @Component({
@@ -11,11 +11,10 @@ export class OperationItemComponent implements OnInit {
 
   @Input() operation: Operation;
 
-  constructor(
-    private readonly operationService: OperationService
-  ) { }
+  constructor() { }
 
   ngOnInit() {
+    console.log(this.operation.transType);
   }
 
 

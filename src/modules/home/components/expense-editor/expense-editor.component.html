@@ -1,0 +1,23 @@
+<form [formGroup]="expenseForm" style="margin-top: 70px;">
+
+  <label>
+    Payment Date:
+    <input type="text" formControlName="date">
+  </label>
+
+  <label>
+    Type:
+    <input type="text" formControlName="expenseType">
+  </label>
+
+  <label>
+    Cost:
+    <input type="text" formControlName="cost">
+  </label>
+
+  <label>
+    Description:
+    <input type="text" formControlName="description">
+  </label>
+</form>
+<button type="submit" (click)="onSubmit($event)">Submit</button>

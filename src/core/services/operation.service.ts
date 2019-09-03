@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpService} from '../http/http.service';
-import {Operation} from '../../modules/home/classes/Operation';
+import {Operation} from '../../modules/home/classes/operation';
 import {HttpParams} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 
@@ -12,7 +12,6 @@ import {environment} from '../../environments/environment';
 export class OperationService {
 
   private operationsUrl: string;
-  private selectedOperation : Operation;
 
   constructor(private httpService: HttpService) {
     this.operationsUrl = environment.baseUrl+'/operations';

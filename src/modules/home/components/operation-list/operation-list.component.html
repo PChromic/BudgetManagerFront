@@ -3,26 +3,25 @@
     Open file dialog
     <input type="file" (change)="getFilePath($event)"/>
   </label>
+</div>
 
-
-  <table class="table table-hover">
-    <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Operation Date</th>
-      <th scope="col">Operation Class</th>
-      <th scope="col">Transaction</th>
-      <th scope="col">Amount</th>
-    </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let operation of operations$">
-        <app-operation-item [operation]="operation" ></app-operation-item>
-      </tr>
-    </tbody>
-  </table>
-
-
-
-
-
+<table class="table table-striped" style="margin-top: 70px;">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Date</th>
+    <th scope="col">Type</th>
+    <th scope="col">Amount</th>
+    <th scope="col"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let op of operations$">
+    <th scope="row">{{ op.id }}</th>
+    <td>{{ op.operationDate }}</td>
+    <td>{{ op.transType }}</td>
+    <td>{{ op.amount}}</td>
+    <td><button [routerLink]="[op.id]">Details</button></td>
+  </tr>
+  </tbody>
+</table>
