@@ -23,13 +23,14 @@ export class ExpenseService {
   }
 
   public save(expense: Expense): Observable<Expense> {
-    console.log("posting new expense");
-    console.log(expense.id);
-    return <Observable<Expense>>this.httpService.http.post<Expense>(this.url, expense, {
+    console.log('posting new expense');
+    console.log(expense);
+    return this.httpService.http.post<Expense>('http://localhost:8080/expenses', expense, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     });
+
   }
 
   public getDetails(id: string): Observable<Expense> {

@@ -1,0 +1,8 @@
+.form{
+  width:500px;
+  position: relative;
+}
+.centreButtons {
+  text-align: center;
+  display: inline-block;
+}

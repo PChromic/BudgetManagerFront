@@ -1,13 +1,10 @@
+import {ExpenseType} from './expense-type';
+
 export class Expense {
   id: number;
-constructor(
-  expenseType: string,
-  value: number,
-  paymentDate: string,
-  description: string
-) {
-}
-
-
+  expenseType: ExpenseType;
+  value: number;
+  paymentDate: string;
+  description: string;
 }
 

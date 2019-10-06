@@ -24,7 +24,6 @@ import { ExpenseListComponent } from './modules/home/components/expense-list/exp
 import { ExpenseDetailComponent } from './modules/home/components/expense-detail/expense-detail.component';
 import { ExpenseEditorComponent } from './modules/home/components/expense-editor/expense-editor.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
