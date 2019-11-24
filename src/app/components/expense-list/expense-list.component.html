@@ -1,0 +1,31 @@
+<div style="margin-top: 70px;">
+  <button routerLink="/expenses/editor">Add new</button>
+<table class="table table-striped" style="margin-top: 10px;">
+  <thead>
+  <tr>
+    <th scope="col" style="width:10%" ></th>
+    <th scope="col" style="width:5%">#</th>
+    <th scope="col" style="width:13%"> Payment Date</th>
+    <th scope="col" style="width:10%">Type</th>
+    <th scope="col">Cost</th>
+    <th scope="col" [hidden]=!detailShown>Details</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let ex of expenses$">
+    <td >
+      <button (click)="showDetail()">Details</button>
+    </td>
+    <th scope="row">{{ ex.id }}</th>
+    <td >{{ ex.paymentDate }}</td>
+    <td>{{ ex.expenseType['description']}}</td>
+    <td>{{ ex.value }}</td>
+    <td>
+      <div [hidden]=!detailShown>
+        {{ex.description}}
+      </div>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</div>

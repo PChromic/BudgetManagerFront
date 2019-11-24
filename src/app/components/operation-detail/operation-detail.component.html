@@ -1,0 +1,30 @@
+<div style="margin-top: 70px;">
+  <table *ngIf="operation$ | async as operation">
+    <tbody>
+    <tr>Operation Class</tr>
+    <tr>{{operation.operationClass}}</tr>
+    <tr>Date</tr>
+    <tr>{{operation.operationDate }}</tr>
+    <tr>Amount</tr>
+    <tr>
+      <td>{{operation.amount}}{{operation.currency}}</td>
+    </tr>
+    <tr>Ending balance</tr>
+    <tr>{{operation.endingBalance}}</tr>
+    <tr>Description</tr>
+    <tr>{{operation.description}}</tr>
+    </tbody>
+  </table>
+  <div *ngIf="operation$ | async as operation">
+    <h3 class="type">{{operation.transactionType}}</h3>
+    <h3 class="detail">{{operation.operationClass}}</h3>
+    <h3 class="detail">{{operation.operationDate}}</h3>
+    <h3 class="detail" [ngStyle]="{'color': getColor(operation.operationClass)}">{{operation.amount}}</h3>
+    <h3 class="detail">{{operation.currency}}</h3>
+    <h3 class="detail">{{operation.endingBalance}}</h3>
+    <h3 class="description">{{operation.description}}</h3>
+  </div>
+  <p>
+    <button routerLink="/operations">Back</button>
+  </p>
+</div>
