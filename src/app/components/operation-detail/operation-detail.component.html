@@ -1,30 +1,47 @@
-<div style="margin-top: 70px;">
-  <table *ngIf="operation$ | async as operation">
-    <tbody>
-    <tr>Operation Class</tr>
-    <tr>{{operation.operationClass}}</tr>
-    <tr>Date</tr>
-    <tr>{{operation.operationDate }}</tr>
-    <tr>Amount</tr>
-    <tr>
-      <td>{{operation.amount}}{{operation.currency}}</td>
-    </tr>
-    <tr>Ending balance</tr>
-    <tr>{{operation.endingBalance}}</tr>
-    <tr>Description</tr>
-    <tr>{{operation.description}}</tr>
-    </tbody>
-  </table>
-  <div *ngIf="operation$ | async as operation">
-    <h3 class="type">{{operation.transactionType}}</h3>
-    <h3 class="detail">{{operation.operationClass}}</h3>
-    <h3 class="detail">{{operation.operationDate}}</h3>
-    <h3 class="detail" [ngStyle]="{'color': getColor(operation.operationClass)}">{{operation.amount}}</h3>
-    <h3 class="detail">{{operation.currency}}</h3>
-    <h3 class="detail">{{operation.endingBalance}}</h3>
-    <h3 class="description">{{operation.description}}</h3>
+<body style="margin-top: 70px;">
+<main>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 mx-auto">
+        <table class="table table-striped" *ngIf="operation$ | async as operation">
+          <thead>
+          <tr>
+            <th scope="col">Description</th>
+            <th scope="col">Value</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>Operation Class</td>
+            <td>{{operation.operationClass}}</td>
+          </tr>
+          <tr>
+            <td>Date</td>
+            <td>{{operation.operationDate}}</td>
+          </tr>
+          <tr>
+            <td>Amount</td>
+            <td [ngStyle]="{'color': getColor(operation.operationClass)}">{{operation.amount}} {{operation.currency}}
+            </td>
+          </tr>
+          <tr>
+            <td>Ending balance</td>
+            <td>{{operation.endingBalance}}</td>
+          </tr>
+          <tr>
+            <td>Description</td>
+            <td>{{operation.description}}</td>
+          </tr>
+          </tbody>
+        </table>
+        <div class="mx-auto">
+          <button routerLink="/operations">Back</button>
+        </div>
+      </div>
+    </div>
   </div>
-  <p>
-    <button routerLink="/operations">Back</button>
-  </p>
-</div>
+
+</main>
+</body>
+
+

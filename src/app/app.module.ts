@@ -25,7 +25,6 @@ import {OperationService} from './services/operation.service';
 import {ExpenseListComponent} from './components/expense-list/expense-list.component';
 
 
-
 @NgModule({
   declarations: [
     AppComponent,

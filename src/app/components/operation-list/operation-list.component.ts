@@ -1,11 +1,10 @@
-import {Component, OnInit, Optional, QueryList, ViewChildren} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
-
-import {Observable} from 'rxjs';
 import {ActivatedRoute} from '@angular/router';
 import {FileService} from '../../services/backend/file.service';
 import {OperationService} from '../../services/operation.service';
 import {Operation} from '../../domain/operation';
+
 
 @Component({
   selector: 'app-operation-list',
@@ -13,9 +12,6 @@ import {Operation} from '../../domain/operation';
   styleUrls: ['./operation-list.component.css']
 })
 export class OperationListComponent implements OnInit {
-
-  /* operations: Operation[];
-   selectedOperation: Operation;*/
 
   operations$: Operation[];
   itemVisible: boolean;
@@ -35,12 +31,37 @@ export class OperationListComponent implements OnInit {
         () => console.log('done loading operations'));
   }
 
-  getFilePath(event) {
+  onFileChange(event:any){
     if (event.target.files.length > 0) {
       let filePath = event.target.files[0].name;
       this.fileService.getFilePath(filePath);
       console.log(filePath);
     }
+  }
+
+  openFileDialog(event:any) {
+    let element: HTMLElement = document.getElementById('fileLoader') as HTMLElement;
+    element.click();
+  }
+
+  getFilePath(event) {
+/*    if (event.target.files.length > 0) {
+      let filePath = event.target.files[0].name;
+      this.fileService.getFilePath(filePath);
+      console.log(filePath);
+    }*/
+
+    if (event.target.files.length > 0) {
+      let filePath = event.target.files[0].name;
+      this.fileService.getFilePath(filePath);
+      console.log(filePath);
+    }
+    this.service.findAll()
+      .subscribe(data => {
+          this.operations$ = data;
+        },
+        err => console.error(err),
+        () => console.log('done loading operations'));
   }
 
   getColor(operationClass: string) {
@@ -49,6 +70,5 @@ export class OperationListComponent implements OnInit {
   toggleDetails(){
    return this.itemVisible = !this.itemVisible;
   }
-
-
 }
+

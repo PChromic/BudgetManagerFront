@@ -1,6 +1,6 @@
-import {Component, Input, OnInit, Output} from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
+import {switchMap} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 import {Operation} from '../../domain/operation';
 import {OperationService} from '../../services/operation.service';

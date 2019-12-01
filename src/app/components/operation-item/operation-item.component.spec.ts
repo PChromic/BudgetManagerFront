@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { OperationItemComponent } from './operation-item.component';
+import {OperationItemComponent} from './operation-item.component';
 
 describe('OperationItemComponent', () => {
   let component: OperationItemComponent;

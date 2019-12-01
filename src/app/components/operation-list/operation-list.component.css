@@ -1,0 +1,27 @@
+#fileLoader
+{
+  display:none;
+}
+.amount-positive
+{
+  background: linear-gradient(45deg, #F2F2F2, #a1ffd0);;
+  text-align: center;
+}
+
+.amount-negative
+{
+  background: linear-gradient(45deg, #F2F2F2, #ffa6a6);;
+  text-align: center;
+}
+
+.oprow
+{
+  transition: 0.5s;
+  transition-duration: 0.5s;
+}
+
+.oprow:hover
+{
+  background-color: #f0f6ff;
+}
+

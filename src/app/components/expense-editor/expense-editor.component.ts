@@ -1,5 +1,5 @@
 import {Component, EventEmitter, OnInit, Output, ViewChild,} from '@angular/core';
-import { NgForm } from '@angular/forms';
+import {NgForm} from '@angular/forms';
 import {ExpenseType} from '../../domain/expense-type';
 import {Expense} from '../../domain/expense';
 import {ExpenseService} from '../../services/expense.service';

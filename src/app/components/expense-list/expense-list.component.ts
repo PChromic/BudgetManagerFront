@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {ExpenseType} from '../../domain/expense-type';
 import {Expense} from '../../domain/expense';
