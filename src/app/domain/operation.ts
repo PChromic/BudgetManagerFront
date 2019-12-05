@@ -7,4 +7,5 @@ export class Operation {
   currency : string;
   endingBalance : number;
   description : string;
+  expanded: boolean = false;
 }

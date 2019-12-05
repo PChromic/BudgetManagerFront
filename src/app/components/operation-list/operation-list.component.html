@@ -1,53 +1,87 @@
 <body>
-  <main>
-    <div class="container" style="margin-top:70px">
-
-      <div class="row">
-        <div class="col-lg-2 mx-1" >
-          <input type="file" id="fileLoader" name="files" title="Load File" (change)="onFileChange($event)" />
-          <input type="button" id="btnOpenFileDialog" value = "Select file" (click)="openFileDialog($event);" />
-        </div>
+<main>
+  <div class="container" style="margin-top:70px">
+    <div class="row">
+      <div class="col-lg-2 mx-1">
+        <input type="file" id="fileLoader" name="files" title="Load File" (change)="onFileChange($event)"/>
+        <input type="button" id="btnOpenFileDialog" value="Select file" (click)="openFileDialog($event);"/>
       </div>
+    </div>
+    <div class="row">
+      <div class="col-9">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th scope="col" sortable="name" (sort)="onSort($event)">#</th>
+            <th scope="col" sortable="name" (sort)="onSort($event)">Date</th>
+            <th scope="col" sortable="name" (sort)="onSort($event)">Type</th>
+            <th scope="col" sortable="name" (sort)="onSort($event)">Amount</th>
+            <th scope="col" sortable="name"></th>
+          </tr>
+          </thead>
 
-      <div class="row">
-        <div class="col-lg-10">
-          <table class="table table-striped">
-            <thead>
-            <tr>
-              <th scope="col" sortable="name" (sort)="onSort($event)">#</th>
-              <th scope="col" sortable="name" (sort)="onSort($event)">Date</th>
-              <th scope="col" sortable="name" (sort)="onSort($event)">Type</th>
-              <th scope="col" sortable="name" (sort)="onSort($event)">Amount</th>
-              <th scope="col" sortable="name"></th>
-            </tr>
-            </thead>
-
-            <tbody>
-            <tr class="oprow" *ngFor="let op of operations$">
+          <tbody>
+          <ng-container *ngFor="let op of operations$">
+            <tr class="oprow" (click)="op.expanded = !op.expanded">
               <th scope="row">{{ op.id }}</th>
               <td>{{ op.operationDate}}</td>
               <td>{{op.transType}}</td>
-              <td [ngClass]="op.operationClass === 'DEBIT' ?'amount-negative' :'amount-positive' ">{{op.amount}}</td>
+              <td [ngClass]="op.operationClass === 'DEBIT' ?'amount-negative' :'amount-positive' ">{{op.amount}}
+                {{op.currency}}
+              </td>
               <td>
                 <button [routerLink]="[op.id]">Details</button>
               </td>
-              <td>
-                <button  data-toggle="collapse" data-target="#detail" aria-expanded="false" aria-controls="multiCollapseExample">Detailssss</button>
-              </td>
+              <td> {{ op.expanded? '&ndash;' : '+'}}</td>
+            </tr>
 
-            </tr>
-            <tr class="collapse" id="detail"><td><div>
-              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.</div></td>
-            </tr>
-            </tbody>
-          </table>
-       </div>
-        <div class="col-lg-2">
-          tu zrob bajer z podsumowaniem widocznych wydatkow
+            <ng-container *ngIf="op.expanded">
+              <th>Description</th>
+              <th>Type</th>
+              <th>Balance</th>
+              <tr>
+                <td>
+                  {{op.description}}
+                </td>
+                <td>
+                  {{op.operationClass}}
+                </td>
+                <td>
+                  {{op.endingBalance}}
+                </td>
+            </ng-container>
+          </ng-container>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-3">
+        <div class="row">
+          <div class="col-6">
+            Summary
+            <ul>
+              <li>Income</li>
+              <li>Outcome</li>
+              <li>Balance</li>
+            </ul>
+          </div>
+          <div class="col-6">
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" id="dropdownMenuButton" type="button" data-toggle="collapse" data-target="#mainmenu" aria-controls="mainmenu" aria-expanded="false">
+                Dropdown button
+              </button>
+              <div class="dropdown-menu" id="mainmenu" aria-labelledby="dropdownMenuButton">
+                <button class="dropdown-item">Last month</button>
+                <button class="dropdown-item">Quarter</button>
+                <button class="dropdown-item">Overall</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </main>
+  </div>
+
+</main>
 </body>
 
 
