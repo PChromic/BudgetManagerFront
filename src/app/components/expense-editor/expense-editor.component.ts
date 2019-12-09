@@ -14,6 +14,7 @@ export class ExpenseEditorComponent implements OnInit {
 
   @ViewChild('exForm', {static: false}) exForm : NgForm;
   keys: any[];
+  keyCount: number = 0;
   types = ExpenseType;
   expense : Expense = new Expense();
   expenseCreated: boolean = false;
@@ -44,5 +45,9 @@ export class ExpenseEditorComponent implements OnInit {
     this.expenseCreated = false;
   }
 
+  onDescription(event: any) {
+    this.keyCount = event.target.value.length;
+    console.log(this.keyCount)
+  }
 
 }

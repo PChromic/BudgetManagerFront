@@ -1,8 +1,15 @@
-.form{
-  width:500px;
-  position: relative;
-}
 .centreButtons {
   text-align: center;
   display: inline-block;
+}
+
+.form{
+  background-color: rgba(0,0,0,0.3);
+   border-radius: 10px;
+}
+
+#count {
+  float: right;
+  padding: 0.1rem 0 0 0;
+  font-size: 0.875rem;
 }
