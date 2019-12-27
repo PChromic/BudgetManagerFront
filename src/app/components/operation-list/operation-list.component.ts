@@ -70,5 +70,15 @@ export class OperationListComponent implements OnInit {
   toggleDetails(){
    return this.itemVisible = !this.itemVisible;
   }
+
+  onQuarter() {
+    this.service.findAll()
+      .subscribe(data => {
+          this.operations$ = data;
+        },
+        err => console.error(err),
+        () => console.log('done loading operations'));
+  }
+
 }
 
