@@ -4,13 +4,13 @@
 }
 .amount-positive
 {
-  background: linear-gradient(45deg, #F2F2F2, #a1ffd0);;
+  color: #00FF00;
   text-align: center;
 }
 
 .amount-negative
 {
-  background: linear-gradient(45deg, #F2F2F2, #ffa6a6);;
+  color: #FF0000;
   text-align: center;
 }
 
@@ -22,6 +22,6 @@
 
 .oprow:hover
 {
-  background-color: #f0f6ff;
+  background-color: #17A2B8;
 }
 

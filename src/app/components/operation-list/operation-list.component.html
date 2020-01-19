@@ -27,16 +27,9 @@
                 {{op.amount}}
                 {{op.currency}}
               </td>
-              <td>{{ op.expanded? '&ndash;' : '+'}}</td>
+              <td><button type="button" class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#exampleModalCenter">Details</button></td>
             </tr>
-            <ng-container *ngIf="op.expanded">
-              <th>Description</th>
-              <th>Balance</th>
-              <tr>
-                <td>{{op.description}}</td>
-                <td>{{op.endingBalance}}</td>
-              </tr>
-            </ng-container>
+            <operation-detail-modal *ngIf="op.expanded"></operation-detail-modal>
           </ng-container>
           </tbody>
         </table>
@@ -51,16 +44,16 @@
               <li>Balance</li>
             </ul>
           </div>
-          <div class="col-xl-3 col-lg-3">
+          <div class="col-xl-6">
             <div class="dropdown">
               <button class="btn btn-info dropdown-toggle" id="dropdownMenuButton" type="button"
                       data-toggle="collapse" data-target="#reportmenu" aria-controls="reportmenu" aria-expanded="false">
-                Dropdown button
+                Periods
               </button>
               <div class="dropdown-menu" id="reportmenu" aria-labelledby="dropdownMenuButton">
-                <button class="dropdown-item">Last month</button>
-                <button class="dropdown-item">Quarter</button>
-                <button class="dropdown-item">Overall</button>
+                <button class="dropdown-item" (click)="onMonth()">Last month</button>
+                <button class="dropdown-item" (click)="onQuarter()">Quarter</button>
+                <button class="dropdown-item" (click)="onOverall()">Overall</button>
               </div>
             </div>
           </div>

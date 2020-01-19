@@ -1,10 +1,8 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-
-import {HttpClient} from '@angular/common/http';
+import {HttpClient,HttpParams} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {Operation} from '../domain/operation';
-
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +18,14 @@ export class OperationService {
 
   public findAll(): Observable<Operation[]> {
     return this.http.get<Operation[]>(this.operationsUrl);
+  }
+
+  public findByOperationDateAfter(date: string): Observable<Operation[]> {
+   //return this.http.get<Operation[]>(this.operationsUrl);
+   const params = new HttpParams()
+      .set('date',date);
+    return this.http.get<Operation[]>(this.operationsUrl+'/params',{params})
+
   }
 
   public save(operation: Operation) {

@@ -23,6 +23,7 @@ import {OperationItemComponent} from './components/operation-item/operation-item
 import {ReportComponent} from './components/report/report.component';
 import {OperationService} from './services/operation.service';
 import {ExpenseListComponent} from './components/expense-list/expense-list.component';
+import {OperationDetailModal} from './components/operation-list/operationDetailModal';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import {ExpenseListComponent} from './components/expense-list/expense-list.compo
     ExpenseListComponent,
     ExpenseDetailComponent,
     ExpenseEditorComponent,
-    ExpenseComponent
+    ExpenseComponent,
+    OperationDetailModal
   ],
   imports: [
     BrowserModule,
