@@ -7,12 +7,13 @@ import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-operation-list',
-  templateUrl: './operation-list.component.html',
+  templateUrl:'operation-list.component.html',
   styleUrls: ['./operation-list.component.css'],
   providers: [DatePipe]
 })
 export class OperationListComponent implements OnInit {
 
+  selected: Operation;
   operations$: Operation[];
   itemVisible: boolean;
 
@@ -32,11 +33,17 @@ export class OperationListComponent implements OnInit {
         () => console.log('done loading operations'));
   }
 
+  onDetails(op: Operation) {
+    this.selected = op;
+    console.log("Selected ID: " + this.selected.id);
+  }
   onFileChange(event: any) {
     if (event.target.files.length > 0) {
       let filePath = event.target.files[0].name;
-      this.fileService.getFilePath(filePath);
+      let test = event.target.value;
+      console.log(test);
       console.log(filePath);
+      this.fileService.getFilePath(filePath);
     }
   }
 
@@ -53,6 +60,7 @@ export class OperationListComponent implements OnInit {
         }*/
 
     if (event.target.files.length > 0) {
+
       let filePath = event.target.files[0].name;
       this.fileService.getFilePath(filePath);
       console.log(filePath);
@@ -111,6 +119,10 @@ export class OperationListComponent implements OnInit {
         },
         err => console.error(err),
         () => console.log('done loading overall operations'));
+  }
+
+  test(){
+    console.log(this.selected);
   }
 
 }

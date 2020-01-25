@@ -1,14 +1,20 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import {Operation} from "../../domain/operation";
 
 @Component({
   selector: 'operation-detail-modal',
   templateUrl: './operationDetailModal.html'
 })
 export class OperationDetailModal {
+
+  @Input() op: Operation;
   closeResult: string;
-  constructor(private modalService: NgbModal) {}
+
+  constructor(private modalService: NgbModal) {
+
+  }
 
 
   open(content) {
