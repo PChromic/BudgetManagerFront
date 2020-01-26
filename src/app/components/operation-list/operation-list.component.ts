@@ -13,6 +13,8 @@ import {DatePipe} from '@angular/common';
 })
 export class OperationListComponent implements OnInit {
 
+  private page: number;
+  private size: number = 10;
   selected: Operation;
   operations$: Operation[];
   itemVisible: boolean;
@@ -31,6 +33,17 @@ export class OperationListComponent implements OnInit {
         },
         err => console.error(err),
         () => console.log('done loading operations'));
+    this.getPaginated();
+  }
+
+  // pagination attempt
+  getPaginated(){
+    this.service.findPaginated(0,10)
+      .subscribe(data => {
+        console.log(data)
+      },
+      err => console.error(err),
+      () => console.log('done loading operations'));
   }
 
   onDetails(op: Operation) {
@@ -121,9 +134,6 @@ export class OperationListComponent implements OnInit {
         () => console.log('done loading overall operations'));
   }
 
-  test(){
-    console.log(this.selected);
-  }
 
 }
 
