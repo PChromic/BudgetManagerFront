@@ -102,7 +102,7 @@ export class OperationListComponent implements OnInit {
 
   onMonth() {
     let fromDate = this.setSearchPeriod(1);
-
+    console.log(fromDate)
     this.service.findByOperationDateAfter(fromDate)
       .subscribe(data => {
           this.operations$ = data;
