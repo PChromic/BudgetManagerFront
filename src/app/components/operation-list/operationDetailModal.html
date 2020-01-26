@@ -9,17 +9,29 @@
         </button>
       </div>
       <div class="modal-body">
-        <ul class="list-group">
-          <li class="list-group-item">ID: {{op.id}}</li>
-          <li class="list-group-item">Date: {{op.operationDate}}</li>
-          <li class="list-group-item">Type: {{op.transType}}</li>
-          <li class="list-group-item">Amount: {{op.amount}} {{op.currency}}</li>
-          <li class="list-group-item">Balance: {{op.endingBalance}}</li>
-          <li class="list-group-item">Description: {{op.description}}</li>
-        </ul>
+        <table class="table">
+          <tr>
+            <td>ID: </td><td>{{op.id}}</td>
+          </tr>
+          <tr>
+            <td>Date: </td><td>{{op.operationDate}}</td>
+          </tr>
+          <tr>
+            <td>Type: </td><td>{{op.transType}}</td>
+          </tr>
+          <tr>
+            <td>Amount: </td><td>{{op.amount}} {{op.currency}}</td>
+          </tr>
+          <tr>
+            <td>Balance: </td><td>{{op.endingBalance}}</td>
+          </tr>
+          <tr>
+            <td>Description: </td><td>{{op.description}}</td>
+          </tr>
+        </table>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
