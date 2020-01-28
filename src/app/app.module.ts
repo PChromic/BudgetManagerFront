@@ -1,6 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-
+import {NgxPaginationModule} from 'ngx-pagination';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HttpClientModule} from '@angular/common/http';
@@ -51,7 +51,8 @@ import {OperationDetailModal} from './components/operation-list/operationDetailM
     HttpClientModule,
     NgbModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule
   ],
   providers: [OperationService,FileService,ExpenseService],
   bootstrap: [AppComponent]

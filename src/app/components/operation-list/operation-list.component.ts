@@ -5,6 +5,7 @@ import {OperationService} from '../../services/operation.service';
 import {Operation} from '../../domain/operation';
 import {DatePipe} from '@angular/common';
 
+
 @Component({
   selector: 'app-operation-list',
   templateUrl:'operation-list.component.html',
@@ -13,7 +14,7 @@ import {DatePipe} from '@angular/common';
 })
 export class OperationListComponent implements OnInit {
 
-  private page: number;
+  p: number = 1;
   private size: number = 10;
   selected: Operation;
   operations$: Operation[];
@@ -102,6 +103,8 @@ export class OperationListComponent implements OnInit {
   }
 
   onQuarter() {
+    // reset the current page variable used in pagination
+    this.p = 1;
     let fromDate = this.setSearchPeriod(3);
 
     this.service.findByOperationDateAfter(fromDate)
@@ -114,6 +117,8 @@ export class OperationListComponent implements OnInit {
   }
 
   onMonth() {
+    // reset the current page variable used in pagination
+    this.p = 1;
     let fromDate = this.setSearchPeriod(1);
     console.log(fromDate)
     this.service.findByOperationDateAfter(fromDate)

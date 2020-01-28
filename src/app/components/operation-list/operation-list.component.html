@@ -3,7 +3,19 @@
     <div class="col-lg-2 text-center">
       <h6>Add new transactions</h6>
       <input type="file" id="fileLoader" name="files" title="Load File" (change)="onFileChange($event)"/>
-      <input type="button" class="btn btn-info" id="btnOpenFileDialog" value="Select file" (click)="openFileDialog($event)"/>
+      <input type="button" class="btn btn-info" id="btnOpenFileDialog" value="Select file"
+             (click)="openFileDialog($event)"/>
+      <div class="dropdown py-5">
+        <button class="btn btn-info dropdown-toggle" id="dropdownMenuButton" type="button"
+                data-toggle="collapse" data-target="#reportmenu" aria-controls="reportmenu" aria-expanded="false">
+          Periods
+        </button>
+        <div class="dropdown-menu" id="reportmenu" aria-labelledby="dropdownMenuButton">
+          <button class="dropdown-item" (click)="onMonth()">Last month</button>
+          <button class="dropdown-item" (click)="onQuarter()">Quarter</button>
+          <button class="dropdown-item" (click)="onOverall()">Overall</button>
+        </div>
+      </div>
     </div>
     <div class="col-xl-7 col-lg-6 col-md-8 col-sm-10 mx-auto text-center">
       <table class="table">
@@ -17,7 +29,7 @@
         </tr>
         </thead>
         <tbody>
-        <ng-container *ngFor="let op of operations$">
+        <ng-container *ngFor="let op of operations$ | paginate: {itemsPerPage:20, currentPage:p}">
           <tr class="oprow" (click)="op.expanded = !op.expanded">
             <th scope="row">{{op.id}}</th>
             <td>{{op.operationDate}}</td>
@@ -28,13 +40,24 @@
             </td>
             <td>
               <button type="button" class="btn btn-outline-info btn-sm"
-                      data-toggle="modal" data-target="#exampleModalCenter" (click)="onDetails(op)">Details</button>
+                      data-toggle="modal" data-target="#exampleModalCenter" (click)="onDetails(op)">Details
+              </button>
             </td>
           </tr>
           <operation-detail-modal *ngIf="op.expanded" [op]="selected"></operation-detail-modal>
         </ng-container>
         </tbody>
+        <tfoot class="grey lighten-5 w-100">
+        <tr>
+          <td colspan="4">
+            <pagination-controls (pageChange)="p = $event" [autoHide]="true" screenReaderPaginationLabel="Pagination"
+                                 screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page">
+            </pagination-controls>
+          </td>
+        </tr>
+        </tfoot>
       </table>
+
     </div>
     <div class="col-3">
       <div class="row">
@@ -47,24 +70,7 @@
           </ul>
         </div>
         <div class="col-xl-6">
-          <div class="dropdown">
-            <button class="btn btn-info dropdown-toggle" id="dropdownMenuButton" type="button"
-                    data-toggle="collapse" data-target="#reportmenu" aria-controls="reportmenu" aria-expanded="false">
-              Periods
-            </button>
-            <div class="dropdown-menu" id="reportmenu" aria-labelledby="dropdownMenuButton">
-              <button class="dropdown-item" (click)="onMonth()">Last month</button>
-              <button class="dropdown-item" (click)="onQuarter()">Quarter</button>
-              <button class="dropdown-item" (click)="onOverall()">Overall</button>
-            </div>
-            <ul class="pagination">
-              <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-              <li class="page-item"><a class="page-link" href="#">1</a></li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item"><a class="page-link" href="#">Next</a></li>
-            </ul>
-          </div>
+
         </div>
       </div>
     </div>
