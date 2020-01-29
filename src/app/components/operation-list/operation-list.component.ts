@@ -8,7 +8,7 @@ import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-operation-list',
-  templateUrl:'operation-list.component.html',
+  templateUrl: 'operation-list.component.html',
   styleUrls: ['./operation-list.component.css'],
   providers: [DatePipe]
 })
@@ -34,23 +34,14 @@ export class OperationListComponent implements OnInit {
         },
         err => console.error(err),
         () => console.log('done loading operations'));
-    this.getPaginated();
-  }
 
-  // pagination attempt
-  getPaginated(){
-    this.service.findPaginated(0,10)
-      .subscribe(data => {
-        console.log(data)
-      },
-      err => console.error(err),
-      () => console.log('done loading operations'));
   }
 
   onDetails(op: Operation) {
     this.selected = op;
     console.log("Selected ID: " + this.selected.id);
   }
+
   onFileChange(event: any) {
     if (event.target.files.length > 0) {
       let filePath = event.target.files[0].name;
@@ -67,12 +58,6 @@ export class OperationListComponent implements OnInit {
   }
 
   getFilePath(event) {
-    /*    if (event.target.files.length > 0) {
-          let filePath = event.target.files[0].name;
-          this.fileService.getFilePath(filePath);
-          console.log(filePath);
-        }*/
-
     if (event.target.files.length > 0) {
 
       let filePath = event.target.files[0].name;
@@ -131,6 +116,7 @@ export class OperationListComponent implements OnInit {
   }
 
   onOverall() {
+    this.getBalance();
     this.service.findAll()
       .subscribe(data => {
           this.operations$ = data;
@@ -139,6 +125,26 @@ export class OperationListComponent implements OnInit {
         () => console.log('done loading overall operations'));
   }
 
+  getSummary() {
 
+  }
+  getIncome() {
+    let op = this.operations$
+      .filter(s=> s.operationClass == "CREDIT")
+      .map(b => b.amount)
+      .reduce((acc, cur) => acc + cur, 0);
+    return op;
+  }
+  getOutcome() {
+    let op = this.operations$
+      .filter(s=> s.operationClass == "DEBIT")
+      .map(b => b.amount)
+      .reduce((acc, cur) => acc + cur, 0);
+    return op;
+  }
+  getBalance() {
+    let op = this.operations$.map(b => b.amount).reduce((acc, cur) => acc + cur, 0);
+    console.log(this.getIncome() - this.getOutcome())
+  }
 }
 

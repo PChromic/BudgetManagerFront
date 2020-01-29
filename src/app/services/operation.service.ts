@@ -20,15 +20,7 @@ export class OperationService {
     return this.http.get<Operation[]>(this.operationsUrl);
   }
 
-  public findPaginated(page: number, size: number): Observable<Operation[]> {
-    const params = new HttpParams()
-      .set('page',String(page))
-      .set('size',String(size));
-    return this.http.get<Operation[]>(this.operationsUrl, {params})
-  }
-
   public findByOperationDateAfter(date: string): Observable<Operation[]> {
-   //return this.http.get<Operation[]>(this.operationsUrl);
    const params = new HttpParams()
       .set('date',date);
     return this.http.get<Operation[]>(this.operationsUrl+'/params',{params})
