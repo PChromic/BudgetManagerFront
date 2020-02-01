@@ -12,27 +12,31 @@ export class FileService {
     this.fileUrl = 'http://localhost:8080/file';
   }
 
-  public getFilePath(filePath: string ) {
+  public openFile(filePath: string) {
     // var x = document.getElementById("myFile").value;
-      this.openFile(filePath);
-      this.readFile();
+    console.log('opening file');
+    let url = this.fileUrl + '/open';
+    const params = new HttpParams()
+      .set('path', filePath);
+    this.http.get(url, {params}).subscribe();
+    //this.readFile();
 
 
   }
 
-  public openFile(filePath: string) {
-    console.log("openFile() works");
-    let url = this.fileUrl + "/open";
+  public openFileaa(filePath: string) {
+    console.log('opening file');
+    let url = this.fileUrl + '/open';
     const params = new HttpParams()
       .set('path', filePath);
 
-    this.http.get(url,{params}).subscribe();
+    this.http.get(url, {params}).subscribe();
 
   }
 
   public readFile() {
-    console.log("readFile() works");
-    let url = this.fileUrl+"/read";
+    console.log('readFile() works');
+    let url = this.fileUrl + '/read';
     this.http.get(url).subscribe();
   }
 }

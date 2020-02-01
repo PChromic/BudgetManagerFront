@@ -48,7 +48,7 @@ export class OperationListComponent implements OnInit {
       let test = event.target.value;
       console.log(test);
       console.log(filePath);
-      this.fileService.getFilePath(filePath);
+      this.fileService.openFile(filePath);
     }
   }
 
@@ -61,7 +61,7 @@ export class OperationListComponent implements OnInit {
     if (event.target.files.length > 0) {
 
       let filePath = event.target.files[0].name;
-      this.fileService.getFilePath(filePath);
+      this.fileService.openFile(filePath);
       console.log(filePath);
     }
     this.service.findAll()
