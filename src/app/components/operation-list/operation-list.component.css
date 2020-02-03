@@ -4,24 +4,26 @@
 }
 .amount-positive
 {
-  color: #00FF00;
+  color: rgb(76,175,80);
   text-align: center;
 }
 
 .amount-negative
 {
-  color: #FF0000;
+  color: rgb(235,80,80);
   text-align: center;
 }
 
-.oprow
-{
-  transition: 0.5s;
-  transition-duration: 0.5s;
-}
 
-.oprow:hover
+
+.table
 {
-  background-color: #17A2B8;
+  font-size: 1.125em;
+}
+.table-wrapper
+{
+  padding:20px;
+  background:#E1EDF6;
+  border-radius:70px;
 }
 

@@ -4,6 +4,8 @@ import {FileService} from '../../services/backend/file.service';
 import {OperationService} from '../../services/operation.service';
 import {Operation} from '../../domain/operation';
 import {DatePipe} from '@angular/common';
+declare var $ : any;
+
 
 
 @Component({
