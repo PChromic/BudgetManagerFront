@@ -4,9 +4,6 @@ import {FileService} from '../../services/backend/file.service';
 import {OperationService} from '../../services/operation.service';
 import {Operation} from '../../domain/operation';
 import {DatePipe} from '@angular/common';
-declare var $ : any;
-
-
 
 @Component({
   selector: 'app-operation-list',
@@ -17,7 +14,6 @@ declare var $ : any;
 export class OperationListComponent implements OnInit {
 
   p: number = 1;
-  private size: number = 10;
   selected: Operation;
   operations$: Operation[];
   itemVisible: boolean;
@@ -78,8 +74,22 @@ export class OperationListComponent implements OnInit {
     return this.service.getColor(operationClass);
   }
 
-  toggleDetails() {
-    return this.itemVisible = !this.itemVisible;
+  sort($scope) {
+    $scope.operations = this.operations$;
+    $scope.sortColumn = "name";
+    $scope.reverseSort = false;
+
+    $scope.sortData = function(column) {
+      $scope.reverseSort = ($scope.sortColumn == column) ? !$scope.reverseSort: false;
+      $scope.sortColumn = column;
+    }
+
+    $scope.getSortClass = function(column) {
+      if($scope.sortColumn == column) {
+        return $scope.reverseSort;
+      }
+    }
+
   }
 
   setSearchPeriod(month: number): string {

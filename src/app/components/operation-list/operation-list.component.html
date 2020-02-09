@@ -1,38 +1,60 @@
 <div class="container-fluid" style="margin-top:70px">
   <div class="row">
+
     <div class="col-lg-2 text-center">
-      <h6>Add new transactions</h6>
-      <input type="file" id="fileLoader" name="files" title="Load File" (change)="onFileChange($event)"/>
-      <input type="button" class="btn btn-info" id="btnOpenFileDialog" value="Select file"
-             (click)="openFileDialog($event)"/>
-      <h6>Select operation period</h6>
-      <div class="btn-group">
-        <button class="btn btn-info dropdown-toggle" id="dropdownMenuButton" type="button"
+
+      <div>
+        <input type="button" class="btn btn-outline-info op-button" id="btnOpenFileDialog" value="Add new transactions"
+               (click)="openFileDialog($event)"/>
+        <input type="file" id="fileLoader" name="files" title="Load File" (change)="onFileChange($event)"/>
+      </div>
+
+
+
+      <div class="btn-group py-2">
+        <button class="btn btn-outline-info dropdown-toggle op-button" id="dropdownMenuButton" type="button"
                 data-toggle="collapse" data-target="#reportmenu" aria-controls="reportmenu" aria-expanded="false">
           Periods
         </button>
-        <div class="dropdown-menu" id="reportmenu" aria-labelledby="dropdownMenuButton">
-          <button class="dropdown-item" (click)="onMonth()">Last month</button>
-          <button class="dropdown-item" (click)="onQuarter()">Quarter</button>
-          <button class="dropdown-item" (click)="onOverall()">Overall</button>
+        <div class="dropdown">
+          <ul class="dropdown-menu" id="reportmenu" aria-labelledby="dropdownMenuButton">
+            <li>
+              <button class="dropdown-item" (click)="onMonth()">Last month</button>
+            </li>
+            <li>
+              <button class="dropdown-item" (click)="onQuarter()">Quarter</button>
+            </li>
+            <li>
+              <button class="dropdown-item" (click)="onOverall()">Overall</button>
+            </li>
+          </ul>
         </div>
+        <div class="dropdown">
+          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
+            <span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <li><a href="#">HTML</a></li>
+            <li><a href="#">CSS</a></li>
+            <li><a href="#">JavaScript</a></li>
+          </ul>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="col-xl-7 col-lg-6 col-md-8 col-sm-10 mx-auto text-center">
+  <div class="col-xl-7 col-lg-6 col-md-8 col-sm-10 text-center">
     <div class="table-wrapper">
       <table class="table table-striped table-hover">
         <thead>
         <tr>
-          <th scope="col" sortable="name" (sort)="onSort($event)">#</th>
-          <th scope="col" sortable="name" (sort)="onSort($event)">Date</th>
-          <th scope="col" sortable="name" (sort)="onSort($event)">Type</th>
-          <th scope="col" sortable="name" (sort)="onSort($event)">Amount</th>
-          <th scope="col" sortable="name"></th>
+          <th scope="col" sortable="ID" (sort)="onSort($event)">#</th>
+          <th scope="col" sortable="Date" (sort)="onSort($event)">Date</th>
+          <th scope="col" sortable="Type" (sort)="onSort($event)">Type</th>
+          <th scope="col" sortable="Amount" (sort)="onSort($event)">Amount</th>
+          <th scope="col"></th>
         </tr>
         </thead>
         <tbody>
         <ng-container *ngFor="let op of operations$ | paginate: {itemsPerPage:30, currentPage:p}">
-          <tr class="oprow" (click)="op.expanded = !op.expanded">
+          <tr (click)="op.expanded = !op.expanded">
             <th scope="row">{{op.id}}</th>
             <td>{{op.operationDate}}</td>
             <td>{{op.transType}}</td>
@@ -41,7 +63,7 @@
               {{op.currency}}
             </td>
             <td>
-              <button type="button" class="btn btn-outline-info btn-sm"
+              <button type="button" class="btn btn-info"
                       data-toggle="modal" data-target="#exampleModalCenter" (click)="onDetails(op)">Details
               </button>
             </td>
@@ -61,13 +83,6 @@
       </table>
     </div>
   </div>
-  <div class="col-3">
-    Summary
-    <ul>
-      <li>Income</li>
-      <li>Outcome</li>
-      <li>Balance</li>
-    </ul>
-  </div>
 </div>
 </div>
+

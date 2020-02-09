@@ -16,7 +16,7 @@ export class ExpenseEditorComponent implements OnInit {
   keys: any[];
   keyCount: number = 0;
   types = ExpenseType;
-  expense : Expense = new Expense();
+  expense : Expense;
   expenseCreated: boolean = false;
 
   @Output()

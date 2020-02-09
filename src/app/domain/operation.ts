@@ -1,4 +1,4 @@
-export class Operation {
+export interface Operation {
   id : number;
   operationDate : string;
   operationClass : string;
@@ -7,5 +7,5 @@ export class Operation {
   currency : string;
   endingBalance : number;
   description : string;
-  expanded: boolean = false;
+  expanded: boolean;
 }
