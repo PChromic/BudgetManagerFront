@@ -2,15 +2,11 @@
   <div class="row">
 
     <div class="col-lg-2 text-center">
-
       <div>
         <input type="button" class="btn btn-outline-info op-button" id="btnOpenFileDialog" value="Add new transactions"
                (click)="openFileDialog($event)"/>
         <input type="file" id="fileLoader" name="files" title="Load File" (change)="onFileChange($event)"/>
       </div>
-
-
-
       <div class="btn-group py-2">
         <button class="btn btn-outline-info dropdown-toggle op-button" id="dropdownMenuButton" type="button"
                 data-toggle="collapse" data-target="#reportmenu" aria-controls="reportmenu" aria-expanded="false">
@@ -29,60 +25,51 @@
             </li>
           </ul>
         </div>
-        <div class="dropdown">
-          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
-            <span class="caret"></span></button>
-          <ul class="dropdown-menu">
-            <li><a href="#">HTML</a></li>
-            <li><a href="#">CSS</a></li>
-            <li><a href="#">JavaScript</a></li>
-          </ul>
-        </div>
       </div>
     </div>
-  <div class="col-xl-7 col-lg-6 col-md-8 col-sm-10 text-center">
-    <div class="table-wrapper">
-      <table class="table table-striped table-hover">
-        <thead>
-        <tr>
-          <th scope="col" sortable="ID" (sort)="onSort($event)">#</th>
-          <th scope="col" sortable="Date" (sort)="onSort($event)">Date</th>
-          <th scope="col" sortable="Type" (sort)="onSort($event)">Type</th>
-          <th scope="col" sortable="Amount" (sort)="onSort($event)">Amount</th>
-          <th scope="col"></th>
-        </tr>
-        </thead>
-        <tbody>
-        <ng-container *ngFor="let op of operations$ | paginate: {itemsPerPage:30, currentPage:p}">
-          <tr (click)="op.expanded = !op.expanded">
-            <th scope="row">{{op.id}}</th>
-            <td>{{op.operationDate}}</td>
-            <td>{{op.transType}}</td>
-            <td [ngClass]="op.operationClass === 'DEBIT'?'amount-negative':'amount-positive'">
-              {{op.amount}}
-              {{op.currency}}
-            </td>
-            <td>
-              <button type="button" class="btn btn-info"
-                      data-toggle="modal" data-target="#exampleModalCenter" (click)="onDetails(op)">Details
-              </button>
+    <div class="col-xl-7 col-lg-6 col-md-8 col-sm-10 text-center">
+      <div class="table-wrapper">
+        <table class="table table-striped table-hover">
+          <thead>
+          <tr>
+            <th scope="col" sortable="ID" (sort)="onSort($event)">#</th>
+            <th scope="col" sortable="Date" (sort)="onSort($event)">Date</th>
+            <th scope="col" sortable="Type" (sort)="onSort($event)">Type</th>
+            <th scope="col" sortable="Amount" (sort)="onSort($event)">Amount</th>
+            <th scope="col"></th>
+          </tr>
+          </thead>
+          <tbody>
+          <ng-container *ngFor="let op of operations$ | paginate: {itemsPerPage:30, currentPage:p}">
+            <tr (click)="op.expanded = !op.expanded">
+              <th scope="row">{{op.id}}</th>
+              <td>{{op.operationDate}}</td>
+              <td>{{op.transType}}</td>
+              <td [ngClass]="op.operationClass === 'DEBIT'?'amount-negative':'amount-positive'">
+                {{op.amount}}
+                {{op.currency}}
+              </td>
+              <td>
+                <button type="button" class="btn btn-info"
+                        data-toggle="modal" data-target="#exampleModalCenter" (click)="onDetails(op)">Details
+                </button>
+              </td>
+            </tr>
+            <operation-detail-modal *ngIf="op.expanded" [op]="selected"></operation-detail-modal>
+          </ng-container>
+          </tbody>
+          <tfoot class="grey lighten-5 w-100">
+          <tr>
+            <td colspan="4">
+              <pagination-controls (pageChange)="p = $event" [autoHide]="true" screenReaderPaginationLabel="Pagination"
+                                   screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page">
+              </pagination-controls>
             </td>
           </tr>
-          <operation-detail-modal *ngIf="op.expanded" [op]="selected"></operation-detail-modal>
-        </ng-container>
-        </tbody>
-        <tfoot class="grey lighten-5 w-100">
-        <tr>
-          <td colspan="4">
-            <pagination-controls (pageChange)="p = $event" [autoHide]="true" screenReaderPaginationLabel="Pagination"
-                                 screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page">
-            </pagination-controls>
-          </td>
-        </tr>
-        </tfoot>
-      </table>
+          </tfoot>
+        </table>
+      </div>
     </div>
   </div>
-</div>
 </div>
 

@@ -16,7 +16,7 @@ export class ExpenseEditorComponent implements OnInit {
   keys: any[];
   keyCount: number = 0;
   types = ExpenseType;
-  expense : Expense;
+  expense : Expense = new Expense();
   expenseCreated: boolean = false;
 
   @Output()
@@ -25,7 +25,7 @@ export class ExpenseEditorComponent implements OnInit {
 
   constructor(private service: ExpenseService) {
     this.keys = Object.keys(this.types).filter(String);
-
+    console.log(this.keys)
   }
 
   ngOnInit() {
