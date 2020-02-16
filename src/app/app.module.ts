@@ -24,8 +24,6 @@ import {ReportComponent} from './components/report/report.component';
 import {OperationService} from './services/operation.service';
 import {ExpenseListComponent} from './components/expense-list/expense-list.component';
 import {OperationDetailModal} from './components/operation-list/operationDetailModal';
-import {ExpenseDeleteModal} from './components/expense-list/expenseDeleteModal';
-
 
 @NgModule({
   declarations: [
@@ -45,7 +43,7 @@ import {ExpenseDeleteModal} from './components/expense-list/expenseDeleteModal';
     ExpenseEditorComponent,
     ExpenseComponent,
     OperationDetailModal,
-    ExpenseDeleteModal
+
   ],
   imports: [
     BrowserModule,
@@ -56,9 +54,10 @@ import {ExpenseDeleteModal} from './components/expense-list/expenseDeleteModal';
     ReactiveFormsModule,
     NgxPaginationModule
   ],
-  providers: [OperationService,FileService,ExpenseService],
+  providers: [OperationService, FileService, ExpenseService],
   bootstrap: [AppComponent],
 
-  entryComponents: [ ExpenseDeleteModal ]
+  entryComponents: []
 })
-export class AppModule { }
+export class AppModule {
+}

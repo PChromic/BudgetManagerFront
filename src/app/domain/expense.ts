@@ -6,5 +6,6 @@ export class Expense {
   value: number;
   paymentDate: string;
   description: string;
+  expanded: boolean;
 }
 

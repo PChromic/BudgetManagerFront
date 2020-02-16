@@ -19,7 +19,7 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let ex of expenses$">
+          <tr *ngFor="let ex of expenses$" (click)="ex.expanded = !ex.expanded">
             <th scope="row">{{ ex.id }}</th>
             <td>{{ ex.paymentDate }}</td>
             <td>{{ ex.expenseType['description']}}</td>
@@ -27,16 +27,57 @@
             <td>{{ex.description}}</td>
             <td>
               <button type="button" class="btn btn-info"
-                       (click)="onEdit($event)">Edit
+                      data-toggle="modal" data-target="#expenseModalEdit">Edit
               </button>
               <button type="button" class="btn btn-danger"
-                      (click)="onDelete()">Delete
+                      data-toggle="modal" data-target="#expenseModal">Delete
               </button>
-              <button (click)="onDelete()">open the modal</button>
             </td>
           </tr>
           </tbody>
         </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" tabindex="-1" id="expenseModal">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-title">Expense deletion</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {{ex.value}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" tabindex="-1" id="expenseModalEdit">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-title-delete">Expense deletion</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Are you sure you want to delete this expense?</strong></p>
+        <p>All information associated will be permanently deleted.
+          <span class="text-danger">This operation can not be undone.</span>
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Ok</button>
       </div>
     </div>
   </div>

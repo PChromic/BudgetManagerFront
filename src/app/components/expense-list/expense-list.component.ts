@@ -4,7 +4,6 @@ import {ExpenseType} from '../../domain/expense-type';
 import {Expense} from '../../domain/expense';
 import {ExpenseService} from '../../services/expense.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {ExpenseDeleteModal} from './expenseDeleteModal';
 
 
 @Component({
@@ -16,7 +15,7 @@ export class ExpenseListComponent implements OnInit {
 
   keys: any[];
   types = ExpenseType;
-  expenses$: Expense[];
+   expenses$: Expense[];
   deleteClicked: boolean = true;
 
   constructor(
@@ -38,13 +37,7 @@ export class ExpenseListComponent implements OnInit {
   onEdit(event: any) {
     console.log("asdasda")
   }
-  onDelete() {
-    const modalRef = this.modalService.open(ExpenseDeleteModal);
-    modalRef.result.then((result) => {
-      if (result) {
-        console.log(result);
-      }
-    })
-  }
+
+
 
 }
