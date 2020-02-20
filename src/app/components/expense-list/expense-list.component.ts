@@ -4,6 +4,7 @@ import {ExpenseType} from '../../domain/expense-type';
 import {Expense} from '../../domain/expense';
 import {ExpenseService} from '../../services/expense.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {Operation} from '../../domain/operation';
 
 
 @Component({
@@ -15,6 +16,7 @@ export class ExpenseListComponent implements OnInit {
 
   keys: any[];
   types = ExpenseType;
+  selected: Expense;
    expenses$: Expense[];
   deleteClicked: boolean = true;
 
@@ -37,7 +39,10 @@ export class ExpenseListComponent implements OnInit {
   onEdit(event: any) {
     console.log("asdasda")
   }
-
+  onDetails(ex: Expense) {
+    console.log("Selected ID: " + this.selected.value);
+    this.selected = ex;
+  }
 
 
 }

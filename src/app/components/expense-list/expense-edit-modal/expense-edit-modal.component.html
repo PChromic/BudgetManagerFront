@@ -1,0 +1,57 @@
+<div class="modal fade" id="expenseModalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-title">Expense deletion</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #exForm="ngForm" class="justify-content-center">
+          <div class="form-group">
+            <label for="paymentDate">Payment Date</label>
+            <input type="date" class="form-control" id="paymentDate" name="paymentDate"
+                   min="2019-01-01" max="2025-12-31" required
+                   #paymentDate="ngModel" [(ngModel)]="expense.paymentDate" >
+          </div>
+          <div class="form-group">
+            <label for="expenseType">Type</label>
+            <select id="expenseType" class="form-control" name="type" required
+                    [(ngModel)]="expense.expenseType" #type="ngModel">
+              <option *ngFor="let key of keys" [value]="key">{{key}}</option>
+            </select>
+          </div>
+          https://www.youtube.com/watch?v=aKTLabJ39Rk
+          https://www.youtube.com/watch?v=aKTLabJ39Rk
+          <div class="form-group">
+            <label for="value">Value</label>
+            <input type="text" class="form-control" id="value" name="value"
+                   [(ngModel)]="expense.value" #value="ngModel" required value="{{expense.value}}">
+          </div>
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea type="text" class="form-control" id="description" name="description"
+                      #description="ngModel" rows="2" maxlength="80"
+                      placeholder="Add description..." required
+                      [(ngModel)]="expense.description"
+                      (keyup)="onDescription($event)">
+              </textarea>
+            <div id="count">
+              <span id="current">{{keyCount}}</span>
+              <span id="maximum">/ 80</span>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-success" (click)="onSubmit($event)" [disabled]="!exForm.form.valid">
+            Submit
+          </button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>

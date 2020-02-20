@@ -15,7 +15,7 @@ export class OperationListComponent implements OnInit {
 
   p: number = 1;
   selected: Operation;
-  operations$: Operation[];
+  expenses$: Operation[];
   itemVisible: boolean;
 
   constructor(
@@ -28,7 +28,7 @@ export class OperationListComponent implements OnInit {
   ngOnInit() {
     this.service.findAll()
       .subscribe(data => {
-          this.operations$ = data;
+          this.expenses$ = data;
         },
         err => console.error(err),
         () => console.log('done loading operations'));
@@ -64,7 +64,7 @@ export class OperationListComponent implements OnInit {
     }
     this.service.findAll()
       .subscribe(data => {
-          this.operations$ = data;
+          this.expenses$ = data;
         },
         err => console.error(err),
         () => console.log('done loading overall operations'));
@@ -75,7 +75,7 @@ export class OperationListComponent implements OnInit {
   }
 
   sort($scope) {
-    $scope.operations = this.operations$;
+    $scope.operations = this.expenses$;
     $scope.sortColumn = "name";
     $scope.reverseSort = false;
 
@@ -106,7 +106,7 @@ export class OperationListComponent implements OnInit {
 
     this.service.findByOperationDateAfter(fromDate)
       .subscribe(data => {
-          this.operations$ = data;
+          this.expenses$ = data;
         },
         err => console.error(err),
         () => console.log('done loading quarter operations'));
@@ -120,7 +120,7 @@ export class OperationListComponent implements OnInit {
     console.log(fromDate)
     this.service.findByOperationDateAfter(fromDate)
       .subscribe(data => {
-          this.operations$ = data;
+          this.expenses$ = data;
         },
         err => console.error(err),
         () => console.log('done loading monthly operations'));
@@ -131,7 +131,7 @@ export class OperationListComponent implements OnInit {
     this.getBalance();
     this.service.findAll()
       .subscribe(data => {
-          this.operations$ = data;
+          this.expenses$ = data;
         },
         err => console.error(err),
         () => console.log('done loading overall operations'));
@@ -141,21 +141,21 @@ export class OperationListComponent implements OnInit {
 
   }
   getIncome() {
-    let op = this.operations$
+    let op = this.expenses$
       .filter(s=> s.operationClass == "CREDIT")
       .map(b => b.amount)
       .reduce((acc, cur) => acc + cur, 0);
     return op;
   }
   getOutcome() {
-    let op = this.operations$
+    let op = this.expenses$
       .filter(s=> s.operationClass == "DEBIT")
       .map(b => b.amount)
       .reduce((acc, cur) => acc + cur, 0);
     return op;
   }
   getBalance() {
-    let op = this.operations$.map(b => b.amount).reduce((acc, cur) => acc + cur, 0);
+    let op = this.expenses$.map(b => b.amount).reduce((acc, cur) => acc + cur, 0);
     console.log(this.getIncome() - this.getOutcome())
   }
 }

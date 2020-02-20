@@ -24,6 +24,8 @@ import {ReportComponent} from './components/report/report.component';
 import {OperationService} from './services/operation.service';
 import {ExpenseListComponent} from './components/expense-list/expense-list.component';
 import {OperationDetailModal} from './components/operation-list/operationDetailModal';
+import { ExpenseDeleteModalComponent } from './components/expense-list/expense-delete-modal/expense-delete-modal.component';
+import { ExpenseEditModalComponent } from './components/expense-list/expense-edit-modal/expense-edit-modal.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,8 @@ import {OperationDetailModal} from './components/operation-list/operationDetailM
     ExpenseEditorComponent,
     ExpenseComponent,
     OperationDetailModal,
+    ExpenseDeleteModalComponent,
+    ExpenseEditModalComponent,
 
   ],
   imports: [
