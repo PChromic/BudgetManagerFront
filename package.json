@@ -21,7 +21,7 @@
     "@angular/platform-browser-dynamic": "~8.0.0",
     "@angular/router": "~8.0.0",
     "@ng-bootstrap/ng-bootstrap": "^5.1.4",
-    "bootstrap": "^4.4.0",
+    "bootstrap": "^4.3.0",
     "jquery": "^3.4.1",
     "ng2-charts": "latest",
     "ngx-pagination": "^5.0.0",
