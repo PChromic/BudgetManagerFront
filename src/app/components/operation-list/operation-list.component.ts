@@ -74,23 +74,6 @@ export class OperationListComponent implements OnInit {
     return this.service.getColor(operationClass);
   }
 
-  sort($scope) {
-    $scope.operations = this.expenses$;
-    $scope.sortColumn = "name";
-    $scope.reverseSort = false;
-
-    $scope.sortData = function(column) {
-      $scope.reverseSort = ($scope.sortColumn == column) ? !$scope.reverseSort: false;
-      $scope.sortColumn = column;
-    }
-
-    $scope.getSortClass = function(column) {
-      if($scope.sortColumn == column) {
-        return $scope.reverseSort;
-      }
-    }
-
-  }
 
   setSearchPeriod(month: number): string {
     return this.datePipe.transform(

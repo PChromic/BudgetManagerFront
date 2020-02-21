@@ -14,28 +14,26 @@
             <label for="paymentDate">Payment Date</label>
             <input type="date" class="form-control" id="paymentDate" name="paymentDate"
                    min="2019-01-01" max="2025-12-31" required
-                   #paymentDate="ngModel" [(ngModel)]="expense.paymentDate" >
+                   #paymentDate="ngModel" [(ngModel)]="ex.paymentDate" >
           </div>
           <div class="form-group">
             <label for="expenseType">Type</label>
             <select id="expenseType" class="form-control" name="type" required
-                    [(ngModel)]="expense.expenseType" #type="ngModel">
+                    [(ngModel)]="ex.expenseType" #type="ngModel">
               <option *ngFor="let key of keys" [value]="key">{{key}}</option>
             </select>
           </div>
-          https://www.youtube.com/watch?v=aKTLabJ39Rk
-          https://www.youtube.com/watch?v=aKTLabJ39Rk
           <div class="form-group">
             <label for="value">Value</label>
             <input type="text" class="form-control" id="value" name="value"
-                   [(ngModel)]="expense.value" #value="ngModel" required value="{{expense.value}}">
+                   [(ngModel)]="ex.value" #value="ngModel" required value="{{ex.value}}">
           </div>
           <div class="form-group">
             <label for="description">Description</label>
             <textarea type="text" class="form-control" id="description" name="description"
                       #description="ngModel" rows="2" maxlength="80"
                       placeholder="Add description..." required
-                      [(ngModel)]="expense.description"
+                      [(ngModel)]="ex.description"
                       (keyup)="onDescription($event)">
               </textarea>
             <div id="count">

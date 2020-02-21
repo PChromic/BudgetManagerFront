@@ -21,10 +21,15 @@ export class ExpenseService {
       .get<Expense[]>(this.url);
   }
 
+  public findOne(id: string): Observable<Expense> {
+    return this.http
+      .get<Expense>(this.url + `/${id}`);
+  }
+
   public save(expense: Expense): Observable<Expense> {
     console.log('posting new expense');
     console.log(expense);
-    return this.http.post<Expense>(this.url,expense);
+    return this.http.post<Expense>(this.url, expense);
     /*    return this.httpService.http.post<Expense>('http://localhost:8080/expenses', expense, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'

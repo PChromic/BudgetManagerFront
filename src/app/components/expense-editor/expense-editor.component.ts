@@ -25,7 +25,6 @@ export class ExpenseEditorComponent implements OnInit {
 
   constructor(private service: ExpenseService) {
     this.keys = Object.keys(this.types).filter(String);
-    console.log(this.keys)
   }
 
   ngOnInit() {

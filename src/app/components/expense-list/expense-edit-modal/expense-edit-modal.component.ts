@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Expense} from '../../../domain/expense';
 import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {ExpenseType} from '../../../domain/expense-type';
 
 @Component({
   selector: 'expense-edit-modal',
@@ -11,9 +12,11 @@ export class ExpenseEditModalComponent {
 
   @Input() ex: Expense;
   closeResult: string;
+  keys: any[];
+  types = ExpenseType;
 
   constructor(private modalService: NgbModal) {
-
+    this.keys = Object.keys(this.types).filter(String);
   }
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {

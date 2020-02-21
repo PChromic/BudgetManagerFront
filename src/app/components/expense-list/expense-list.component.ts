@@ -36,8 +36,9 @@ export class ExpenseListComponent implements OnInit {
       () => console.log('done loading expenses'));
 
   }
-  onEdit(event: any) {
-    console.log("asdasda")
+  onEdit(ex: Expense) {
+    console.log("Selected ID: " + this.selected.value);
+    this.selected = ex;
   }
   onDetails(ex: Expense) {
     console.log("Selected ID: " + this.selected.value);
