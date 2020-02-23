@@ -47,7 +47,6 @@ import { ExpenseEditModalComponent } from './components/expense-list/expense-edi
     OperationDetailModal,
     ExpenseDeleteModalComponent,
     ExpenseEditModalComponent,
-
   ],
   imports: [
     BrowserModule,
@@ -56,8 +55,8 @@ import { ExpenseEditModalComponent } from './components/expense-list/expense-edi
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxPaginationModule
-  ],
+    NgxPaginationModule,
+    ],
   providers: [OperationService, FileService, ExpenseService],
   bootstrap: [AppComponent],
 

@@ -27,22 +27,23 @@
               <td>{{ ex.value }}</td>
               <td>{{ex.description}}</td>
               <td>
-                {{ex.expanded}}
                 <button type="button" class="btn btn-info"
-                        data-toggle="modal" data-target="#expenseModalEdit" (click)="onEdit(ex)">Edit
+                        data-toggle="modal" data-target="#expenseModalEdit">Edit
                 </button>
                 <button type="button" class="btn btn-danger"
-                        data-toggle="modal" data-target="#expenseModal" (click)="onDetails(ex)">Delete
+                        data-toggle="modal" data-target="#expenseModalDelete">Delete
                 </button>
               </td>
             </tr>
-              <expense-delete-modal [ex]="selected"></expense-delete-modal>
-              <expense-edit-modal [ex]="selected"></expense-edit-modal>
           </ng-container>
           </tbody>
         </table>
       </div>
     </div>
+  </div>
+  <div *ngIf='selected'>
+    <expense-edit-modal [expense]="selected"></expense-edit-modal>
+    <expense-delete-modal [ex]="selected"></expense-delete-modal>
   </div>
 </div>
 

@@ -1,23 +1,35 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {Expense} from '../../../domain/expense';
 import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {ExpenseType} from '../../../domain/expense-type';
+import {ExpenseService} from '../../../services/expense.service';
+import {NgForm, ReactiveFormsModule} from '@angular/forms';
 
 @Component({
   selector: 'expense-edit-modal',
   templateUrl: './expense-edit-modal.component.html',
   styleUrls: ['./expense-edit-modal.component.css']
 })
+
 export class ExpenseEditModalComponent {
-
-  @Input() ex: Expense;
+  @ViewChild('exForm', {static: false}) exForm : NgForm;
+  @Input() expense: Expense;
   closeResult: string;
-  keys: any[];
-  types = ExpenseType;
+  keyCount: number = 0;
 
-  constructor(private modalService: NgbModal) {
-    this.keys = Object.keys(this.types).filter(String);
+  //* keys: any[];
+  //* mapping of expense type enum
+  keys = Object.keys;
+  types = ExpenseType;
+  //*
+
+  constructor(private modalService: NgbModal, private service: ExpenseService) {
+    //*this.keys = Object.keys(this.types).filter(String);
+
   }
+
+
+
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
@@ -34,5 +46,17 @@ export class ExpenseEditModalComponent {
     } else {
       return  `with: ${reason}`;
     }
+  }
+  private onDescription(event: any) {
+    this.keyCount = event.target.value.length;
+    console.log(this.keyCount)
+  }
+  private onSubmit() {
+    console.log(this.expense.expenseType);
+     this.service.save(this.expense)
+      .subscribe(
+        (data: Expense) =>
+          console.log(data)
+      );
   }
 }

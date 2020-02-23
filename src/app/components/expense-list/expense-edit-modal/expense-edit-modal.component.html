@@ -3,7 +3,7 @@
   <div class="modal-dialog modal-sm" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" id="modal-title">Expense deletion</h4>
+        <h4 class="modal-title" id="modal-title">Expense edition</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -12,44 +12,46 @@
         <form #exForm="ngForm" class="justify-content-center">
           <div class="form-group">
             <label for="paymentDate">Payment Date</label>
-            <input type="date" class="form-control" id="paymentDate" name="paymentDate"
-                   min="2019-01-01" max="2025-12-31" required
-                   #paymentDate="ngModel" [(ngModel)]="ex.paymentDate" >
+            <input  id="paymentDate" type="date" class="form-control" name="paymentDate"
+                    min="2019-01-01" max="2025-12-31" required
+                    #paymentDateEdit="ngModel" [(ngModel)]="expense.paymentDate" >
           </div>
           <div class="form-group">
             <label for="expenseType">Type</label>
-            <select id="expenseType" class="form-control" name="type" required
-                    [(ngModel)]="ex.expenseType" #type="ngModel">
-              <option *ngFor="let key of keys" [value]="key">{{key}}</option>
+            <select id="expenseType" class="form-control" name="type" [(ngModel)]="expense.expenseType" #type="ngModel">
+              <option selected>{{expense.expenseType["description"]}}</option>
+              <option *ngFor="let exType of keys(types)" [value]="exType">{{types[exType]}}</option>
             </select>
           </div>
           <div class="form-group">
             <label for="value">Value</label>
-            <input type="text" class="form-control" id="value" name="value"
-                   [(ngModel)]="ex.value" #value="ngModel" required value="{{ex.value}}">
+            <input id="value" type="text" class="form-control" name="value"
+                   [(ngModel)]="expense.value" #valueEdit="ngModel" required value="{{expense.value}}">
+
           </div>
           <div class="form-group">
             <label for="description">Description</label>
-            <textarea type="text" class="form-control" id="description" name="description"
-                      #description="ngModel" rows="2" maxlength="80"
-                      placeholder="Add description..." required
-                      [(ngModel)]="ex.description"
+            <textarea id="description" type="text" class="form-control" name="description"
+                      #descriptionEdit="ngModel" rows="2" maxlength="80" required
+                      [(ngModel)]="expense.description"
                       (keyup)="onDescription($event)">
               </textarea>
             <div id="count">
-              <span id="current">{{keyCount}}</span>
+              <span id="current" ng-init="keyCount=1">{{keyCount}}</span>
               <span id="maximum">/ 80</span>
             </div>
           </div>
-          <button type="submit" class="btn btn-success" (click)="onSubmit($event)" [disabled]="!exForm.form.valid">
-            Submit
-          </button>
+
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Ok</button>
+        <button type="submit" class="btn btn-success"  data-dismiss="modal" (click)="onSubmit($event)" [disabled]="!exForm.form.valid">
+          Submit
+        </button>
       </div>
     </div>
   </div>
 </div>
+
+
