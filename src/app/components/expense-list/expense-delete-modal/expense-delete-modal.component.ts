@@ -2,6 +2,7 @@ import { Component, Input} from '@angular/core';
 
 import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {Expense} from '../../../domain/expense';
+import {ExpenseService} from '../../../services/expense.service';
 
 @Component({
   selector: 'expense-delete-modal',
@@ -13,7 +14,7 @@ export class ExpenseDeleteModalComponent {
   @Input() ex: Expense;
   closeResult: string;
 
-  constructor(private modalService: NgbModal) {
+  constructor(private modalService: NgbModal, private service: ExpenseService) {
 
   }
   open(content) {
@@ -22,6 +23,11 @@ export class ExpenseDeleteModalComponent {
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
+  }
+
+  deleteExpense() {
+    console.log("Deleting expense with ID: "+this.ex.id)
+    this.service.delete(this.ex.id);
   }
 
   private getDismissReason(reason: any): string {

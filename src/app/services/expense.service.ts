@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
 import {environment} from '../../environments/environment';
 import {Observable} from 'rxjs';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {Expense} from '../domain/expense';
+import {catchError} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -30,11 +31,10 @@ export class ExpenseService {
     console.log('posting new expense');
     console.log(expense);
     return this.http.post<Expense>(this.url, expense);
-    /*    return this.httpService.http.post<Expense>('http://localhost:8080/expenses', expense, {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    });*/
+  }
+
+  delete(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.url}/${id}`);
 
   }
 
