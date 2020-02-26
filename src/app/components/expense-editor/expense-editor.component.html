@@ -3,21 +3,19 @@
     <div [hidden]="expenseCreated" class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form">
       <h1 class="py-1 text-truncate">New expense form</h1>
       <div class="px-2">
-        <form #exForm="ngForm" class="justify-content-center">
+        <form #exForm="ngForm" class="form-horizontal was-validated">
           <div class="form-group">
             <label for="paymentDate">Payment Date</label>
-            <input type="date" class="form-control" id="paymentDate" name="paymentDate"
-                   min="2019-01-01" max="2025-12-31" required
-                   #paymentDate="ngModel" [(ngModel)]="expense.paymentDate">
+            <input type="date" class="form-control" id="paymentDate" name="paymentDate" min="2019-01-01" max="2025-12-31"
+                   #paymentDate="ngModel" [(ngModel)]="expense.paymentDate" required>
           </div>
           <div class="form-group">
             <label for="expenseType">Type</label>
-            <select id="expenseType" class="form-control" name="type" required
-                    [(ngModel)]="expense.expenseType" #type="ngModel">
-              <option *ngFor="let key of keys" [value]="key">{{key}}</option>
+            <select id="expenseType" class="form-control" name="type" [(ngModel)]="expense.expenseType" #type="ngModel" required>
+              <option *ngFor="let exType of keys(types)" [value]="exType">{{types[exType]}}</option>
             </select>
           </div>
-          <div class="form-group">
+          <div class="form-group is-invalid">
             <label for="value">Value</label>
             <input type="text" class="form-control" id="value" name="value"
                    [(ngModel)]="expense.value" #value="ngModel" required>
@@ -35,9 +33,11 @@
               <span id="maximum">/ 80</span>
             </div>
           </div>
-          <button type="submit" class="btn btn-success" (click)="onSubmit($event)" [disabled]="!exForm.form.valid">
+          <div class="text-center">
+            <button type="submit" class="btn btn-success" (click)="onSubmit($event)" [disabled]="!exForm.form.valid">
             Submit
           </button>
+          </div>
         </form>
       </div>
     </div>

@@ -25,10 +25,7 @@ export class ExpenseEditModalComponent {
 
   constructor(private modalService: NgbModal, private service: ExpenseService) {
     //*this.keys = Object.keys(this.types).filter(String);
-
   }
-
-
 
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {

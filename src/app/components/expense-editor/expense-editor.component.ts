@@ -15,6 +15,7 @@ export class ExpenseEditorComponent implements OnInit {
   @ViewChild('exForm', {static: false}) exForm : NgForm;
   keys: any[];
   keyCount: number = 0;
+  keys = Object.keys;
   types = ExpenseType;
   expense : Expense = new Expense();
   expenseCreated: boolean = false;
@@ -24,7 +25,7 @@ export class ExpenseEditorComponent implements OnInit {
 
 
   constructor(private service: ExpenseService) {
-    this.keys = Object.keys(this.types).filter(String);
+
   }
 
   ngOnInit() {

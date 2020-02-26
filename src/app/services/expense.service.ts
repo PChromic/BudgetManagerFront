@@ -37,7 +37,11 @@ export class ExpenseService {
     });*/
 
   }
-
+  public delete(id: number){
+    console.log('removing expense');
+    console.log(this.url+`/${id}`);
+    return this.http.delete(this.url+`/${id}`);
+  }
   public getDetails(id: string): Observable<Expense> {
     console.log('getDetails() works');
     console.log(id);

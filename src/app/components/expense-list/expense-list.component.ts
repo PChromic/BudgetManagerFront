@@ -24,8 +24,7 @@ export class ExpenseListComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private service: ExpenseService,
-    private modalService: NgbModal) {
+    private service: ExpenseService) {
     this.keys = Object.keys(this.types).filter(String);
   }
 
@@ -38,16 +37,4 @@ export class ExpenseListComponent implements OnInit {
         () => console.log('done loading expenses'));
 
   }
-  
-  onEdit(ex: Expense) {
-    console.log('Selected ID: ' + this.selected.id);
-    this.selected = ex;
-  }
-
-  onDetails(ex: Expense) {
-    console.log('Selected ID: ' + this.selected.id);
-    this.selected = ex;
-  }
-
-
 }

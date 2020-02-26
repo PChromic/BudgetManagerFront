@@ -2,6 +2,7 @@ import { Component, Input} from '@angular/core';
 
 import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {Expense} from '../../../domain/expense';
+import {ExpenseService} from '../../../services/expense.service';
 
 @Component({
   selector: 'expense-delete-modal',
@@ -10,10 +11,10 @@ import {Expense} from '../../../domain/expense';
 })
 export class ExpenseDeleteModalComponent {
 
-  @Input() ex: Expense;
+  @Input() expense: Expense;
   closeResult: string;
 
-  constructor(private modalService: NgbModal) {
+  constructor(private modalService: NgbModal, private service: ExpenseService) {
 
   }
   open(content) {
@@ -32,5 +33,8 @@ export class ExpenseDeleteModalComponent {
     } else {
       return  `with: ${reason}`;
     }
+  }
+  onDelete(){
+    this.service.delete(this.expense.id);
   }
 }
