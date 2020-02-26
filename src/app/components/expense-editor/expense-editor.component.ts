@@ -35,9 +35,9 @@ export class ExpenseEditorComponent implements OnInit {
     this.expenseCreated = true;
     this.service.save(this.expense)
       .subscribe(
-      (data: Expense) =>
-        console.log(data)
-    );
+        (data: Expense) =>
+          console.log(data)
+      );
     this.exForm.reset();
   }
 
@@ -51,3 +51,4 @@ export class ExpenseEditorComponent implements OnInit {
   }
 
 }
+p

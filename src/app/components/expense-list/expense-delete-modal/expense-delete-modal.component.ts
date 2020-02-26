@@ -25,6 +25,11 @@ export class ExpenseDeleteModalComponent {
     });
   }
 
+  deleteExpense() {
+    console.log("Deleting expense with ID: "+this.ex.id)
+    this.service.delete(this.ex.id);
+  }
+
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';

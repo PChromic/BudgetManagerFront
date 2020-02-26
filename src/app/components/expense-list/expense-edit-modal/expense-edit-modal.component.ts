@@ -50,7 +50,7 @@ export class ExpenseEditModalComponent {
   }
   private onSubmit() {
     console.log(this.expense.expenseType);
-     this.service.save(this.expense)
+    this.service.save(this.expense)
       .subscribe(
         (data: Expense) =>
           console.log(data)
