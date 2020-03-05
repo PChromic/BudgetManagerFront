@@ -13,7 +13,7 @@ import {ExpenseService} from '../../services/expense.service';
 export class ExpenseEditorComponent implements OnInit {
 
   @ViewChild('exForm', {static: false}) exForm : NgForm;
-  keys: any[];
+
   keyCount: number = 0;
   keys = Object.keys;
   types = ExpenseType;
@@ -51,4 +51,3 @@ export class ExpenseEditorComponent implements OnInit {
   }
 
 }
-p

@@ -15,8 +15,16 @@ export class OperationService {
     this.operationsUrl = environment.baseUrl+'/operations';
 
   }
+  // to dzialalo przed paginacja
+/*  public findAll(): Observable<Operation[]> {
+    console.log("getting operations");
+    return this.http.get<Operation[]>(this.operationsUrl);
+  }
+  */
 
+  // proba paginacji
   public findAll(): Observable<Operation[]> {
+    console.log("getting operations");
     return this.http.get<Operation[]>(this.operationsUrl);
   }
 

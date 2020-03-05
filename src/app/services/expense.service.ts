@@ -34,14 +34,16 @@ export class ExpenseService {
   }
 
   delete(id: number): Observable<void> {
+    console.log('removing expense');
+    console.log(this.url+`/${id}`);
     return this.http.delete<void>(`${this.url}/${id}`);
 
   }
-  public delete(id: number){
+/*  public delete(id: number){
     console.log('removing expense');
     console.log(this.url+`/${id}`);
     return this.http.delete(this.url+`/${id}`);
-  }
+  }*/
   public getDetails(id: string): Observable<Expense> {
     console.log('getDetails() works');
     console.log(id);

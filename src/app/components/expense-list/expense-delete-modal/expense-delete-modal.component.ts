@@ -26,8 +26,11 @@ export class ExpenseDeleteModalComponent {
   }
 
   deleteExpense() {
-    console.log("Deleting expense with ID: "+this.ex.id)
-    this.service.delete(this.ex.id);
+    console.log("Deleting expense with ID: "+this.expense.id);
+    this.service.delete(this.expense.id).subscribe(
+      () => console.log(`Employee with ID = ${this.expense.id} deleted`),
+      (err) => console.log(err)
+    );
   }
 
   private getDismissReason(reason: any): string {
@@ -38,8 +41,5 @@ export class ExpenseDeleteModalComponent {
     } else {
       return  `with: ${reason}`;
     }
-  }
-  onDelete(){
-    this.service.delete(this.expense.id);
   }
 }

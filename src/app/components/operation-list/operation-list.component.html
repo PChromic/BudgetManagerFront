@@ -40,7 +40,7 @@
           </tr>
           </thead>
           <tbody>
-          <ng-container *ngFor="let op of expenses$ | paginate: {itemsPerPage:30, currentPage:p}">
+          <ng-container *ngFor="let op of operations$ | paginate: {itemsPerPage:30, currentPage:p}">
             <tr (click)="op.expanded = !op.expanded">
               <th scope="row">{{op.id}}</th>
               <td>{{op.operationDate}}</td>

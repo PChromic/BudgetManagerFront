@@ -15,7 +15,7 @@ export class OperationListComponent implements OnInit {
 
   p: number = 1;
   selected: Operation;
-  expenses$: Operation[];
+  operations$: Operation[];
   itemVisible: boolean;
 
   constructor(
@@ -28,7 +28,7 @@ export class OperationListComponent implements OnInit {
   ngOnInit() {
     this.service.findAll()
       .subscribe(data => {
-          this.expenses$ = data;
+          this.operations$ = data;
         },
         err => console.error(err),
         () => console.log('done loading operations'));
@@ -64,7 +64,7 @@ export class OperationListComponent implements OnInit {
     }
     this.service.findAll()
       .subscribe(data => {
-          this.expenses$ = data;
+          this.operations$ = data;
         },
         err => console.error(err),
         () => console.log('done loading overall operations'));
@@ -89,7 +89,7 @@ export class OperationListComponent implements OnInit {
 
     this.service.findByOperationDateAfter(fromDate)
       .subscribe(data => {
-          this.expenses$ = data;
+          this.operations$ = data;
         },
         err => console.error(err),
         () => console.log('done loading quarter operations'));
@@ -103,7 +103,7 @@ export class OperationListComponent implements OnInit {
     console.log(fromDate)
     this.service.findByOperationDateAfter(fromDate)
       .subscribe(data => {
-          this.expenses$ = data;
+          this.operations$ = data;
         },
         err => console.error(err),
         () => console.log('done loading monthly operations'));
@@ -114,7 +114,7 @@ export class OperationListComponent implements OnInit {
     this.getBalance();
     this.service.findAll()
       .subscribe(data => {
-          this.expenses$ = data;
+          this.operations$ = data;
         },
         err => console.error(err),
         () => console.log('done loading overall operations'));
@@ -124,21 +124,21 @@ export class OperationListComponent implements OnInit {
 
   }
   getIncome() {
-    let op = this.expenses$
+    let op = this.operations$
       .filter(s=> s.operationClass == "CREDIT")
       .map(b => b.amount)
       .reduce((acc, cur) => acc + cur, 0);
     return op;
   }
   getOutcome() {
-    let op = this.expenses$
+    let op = this.operations$
       .filter(s=> s.operationClass == "DEBIT")
       .map(b => b.amount)
       .reduce((acc, cur) => acc + cur, 0);
     return op;
   }
   getBalance() {
-    let op = this.expenses$.map(b => b.amount).reduce((acc, cur) => acc + cur, 0);
+    let op = this.operations$.map(b => b.amount).reduce((acc, cur) => acc + cur, 0);
     console.log(this.getIncome() - this.getOutcome())
   }
 }
