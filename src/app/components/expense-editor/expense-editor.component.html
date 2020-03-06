@@ -1,6 +1,6 @@
 <div class="container" style="margin-top: 70px;">
   <div class="row">
-    <div [hidden]="expenseCreated" class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form">
+    <div [hidden]="expenseCreated" class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto bg-round">
       <h1 class="py-1 text-truncate">New expense form</h1>
       <div class="px-2">
         <form #exForm="ngForm" class="form-horizontal was-validated">
@@ -34,7 +34,7 @@
             </div>
           </div>
           <div class="text-center">
-            <button type="submit" class="btn btn-success" (click)="onSubmit($event)" [disabled]="!exForm.form.valid">
+            <button type="submit" class="btn btn-lg btn-success mb-2" (click)="onSubmit($event)" [disabled]="!exForm.form.valid">
               Submit
             </button>
           </div>
@@ -42,8 +42,8 @@
       </div>
     </div>
   </div>
-  <div [hidden]="!expenseCreated" class="centreButtons">
-    <button class="btn btn-info" routerLink="/expenses/editor" (click)="onBack($event)">Back</button>
-    <button class="btn btn-info" routerLink="/expenses" (click)="onBack($event)">To list</button>
+  <div [hidden]="!expenseCreated" class="col-sm-6 offset-sm-3 bg-light p-2 text-center bg-round">
+      <h2>Expense successfully added</h2>
+      <h3>You will be redirected soon</h3>
   </div>
 </div>

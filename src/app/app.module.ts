@@ -26,6 +26,7 @@ import {ExpenseListComponent} from './components/expense-list/expense-list.compo
 import {OperationDetailModal} from './components/operation-list/operationDetailModal';
 import { ExpenseDeleteModalComponent } from './components/expense-list/expense-delete-modal/expense-delete-modal.component';
 import { ExpenseEditModalComponent } from './components/expense-list/expense-edit-modal/expense-edit-modal.component';
+import { ExpenseDetailModalComponent } from './components/expense-list/expense-detail-modal/expense-detail-modal.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { ExpenseEditModalComponent } from './components/expense-list/expense-edi
     OperationDetailModal,
     ExpenseDeleteModalComponent,
     ExpenseEditModalComponent,
+    ExpenseDetailModalComponent,
   ],
   imports: [
     BrowserModule,

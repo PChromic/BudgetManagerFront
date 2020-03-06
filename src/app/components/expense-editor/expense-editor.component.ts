@@ -3,6 +3,7 @@ import {NgForm} from '@angular/forms';
 import {ExpenseType} from '../../domain/expense-type';
 import {Expense} from '../../domain/expense';
 import {ExpenseService} from '../../services/expense.service';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -24,9 +25,10 @@ export class ExpenseEditorComponent implements OnInit {
   expenseEmitter: EventEmitter<any> = new EventEmitter<void>();
 
 
-  constructor(private service: ExpenseService) {
+  constructor(private service: ExpenseService, private router: Router) {
 
   }
+
 
   ngOnInit() {
   }
@@ -39,6 +41,9 @@ export class ExpenseEditorComponent implements OnInit {
           console.log(data)
       );
     this.exForm.reset();
+    setTimeout(() => {
+      this.router.navigate(["/expenses"]);
+    }, 4000);
   }
 
   onBack() {

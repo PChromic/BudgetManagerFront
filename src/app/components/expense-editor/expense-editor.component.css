@@ -1,9 +1,5 @@
-.centreButtons {
-  text-align: center;
-  display: inline-block;
-}
 
-.form{
+.bg-round{
   background-color: rgba(0,0,0,0.3);
    border-radius: 10px;
 }
