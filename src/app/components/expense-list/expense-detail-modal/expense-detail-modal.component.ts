@@ -13,7 +13,6 @@ export class ExpenseDetailModalComponent {
   @Input() expense: Expense;
   closeResult: string;
 
-
   constructor(private modalService: NgbModal, private service: ExpenseService) {
 
   }
