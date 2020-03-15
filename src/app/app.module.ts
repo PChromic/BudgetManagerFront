@@ -7,9 +7,8 @@ import {HttpClientModule} from '@angular/common/http';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {FooterComponent} from './components/footer/footer.component';
-import {UserDetailsComponent} from './components/user/user-details/user-details.component';
 import {OperationDetailComponent} from './components/operation-detail/operation-detail.component';
-import {UserComponent} from './components/user/user.component';
+import {User} from './domain/user';
 import {OperationListComponent} from './components/operation-list/operation-list.component';
 import {PageNotFoundComponent} from './components/page-not-found/page-not-found.component';
 import {HeaderComponent} from './components/header/header.component';
@@ -33,8 +32,6 @@ import { ExpenseDetailModalComponent } from './components/expense-list/expense-d
     AppComponent,
     FooterComponent,
     HeaderComponent,
-    UserComponent,
-    UserDetailsComponent,
     OperationDetailComponent,
     OperationListComponent,
     PageNotFoundComponent,
