@@ -1,30 +1,43 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 import {User} from '../domain/user';
 import {environment} from '../../environments/environment';
+import {Observable} from 'rxjs';
+import {Expense} from '../domain/expense';
 
 
-@Injectable({ providedIn: 'root' })
+@Injectable({providedIn: 'root'})
 export class UserService {
-  constructor(private http: HttpClient) { }
 
-  getAll() {
-    return this.http.get<User[]>(`${environment.baseUrl}/users`);
+  private url: string;
+  public users: User[];
+
+  constructor(private http: HttpClient) {
+    this.url = environment.baseUrl + '/users';
+    this.findAll().subscribe(data => {
+      this.users = data
+    });
   }
 
-  getById(id: number) {
-    return this.http.get(`${environment.baseUrl}/users/${id}`);
+  public findAll(): Observable<User[]> {
+    return this.http
+      .get<User[]>(this.url);
   }
 
-  register(user: User) {
-    return this.http.post(`${environment.baseUrl}/users/register`, user);
+  public getById(id: number) {
+    return this.http.get<User>(`${environment.baseUrl}/users/${id}`);
   }
 
-  update(user: User) {
+  public save(user: User): Observable<User> {
+    console.log(user);
+    return this.http.post<User>(this.url, user);
+  }
+
+  public update(user: User) {
     return this.http.put(`${environment.baseUrl}/users/${user.id}`, user);
   }
 
-  delete(id: number) {
-    return this.http.delete(`${environment.baseUrl}/users/${id}`);
+  public delete(id: number) {
+    return this.http.delete<void>(`${environment.baseUrl}/users/${id}`);
   }
 }

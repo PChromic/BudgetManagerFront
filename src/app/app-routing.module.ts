@@ -7,16 +7,21 @@ import {ExpenseListComponent} from './components/expense-list/expense-list.compo
 import {ExpenseEditorComponent} from './components/expense-editor/expense-editor.component';
 import {ExpenseDetailComponent} from './components/expense-detail/expense-detail.component';
 import {ReportComponent} from './components/report/report.component';
+import {LoginComponent} from './login/login.component';
+import {LogoutComponent} from './logout/logout.component';
+import {AuthGuardService} from './services/auth-guard.service';
 
 const routes: Routes = [
-  {path: '', redirectTo: '/home', pathMatch: 'full'},
-  {path: 'home', component: HomeComponent},
-  {path: 'operations', component: OperationListComponent},
-  {path: 'operations/:id', component: OperationDetailComponent},
-  {path: 'expenses', component: ExpenseListComponent},
-  {path: 'expenses/editor', component: ExpenseEditorComponent},
-  {path: 'expenses/:id', component: ExpenseDetailComponent},
-  {path: 'reports', component: ReportComponent},
+  {path: '', redirectTo: '/home', pathMatch: 'full', canActivate:[AuthGuardService]},
+  {path: 'login', component: LoginComponent},
+  {path: 'home', component: HomeComponent, canActivate:[AuthGuardService]},
+  {path: 'logout', component: LogoutComponent, canActivate:[AuthGuardService]},
+  {path: 'operations', component: OperationListComponent, canActivate:[AuthGuardService]},
+  {path: 'operations/:id', component: OperationDetailComponent, canActivate:[AuthGuardService]},
+  {path: 'expenses', component: ExpenseListComponent, canActivate:[AuthGuardService]},
+  {path: 'expenses/editor', component: ExpenseEditorComponent, canActivate:[AuthGuardService]},
+  {path: 'expenses/:id', component: ExpenseDetailComponent, canActivate:[AuthGuardService]},
+  {path: 'reports', component: ReportComponent, canActivate:[AuthGuardService]},
 ];
 
 @NgModule({

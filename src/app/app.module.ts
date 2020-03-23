@@ -26,6 +26,8 @@ import {OperationDetailModal} from './components/operation-list/operationDetailM
 import { ExpenseDeleteModalComponent } from './components/expense-list/expense-delete-modal/expense-delete-modal.component';
 import { ExpenseEditModalComponent } from './components/expense-list/expense-edit-modal/expense-edit-modal.component';
 import { ExpenseDetailModalComponent } from './components/expense-list/expense-detail-modal/expense-detail-modal.component';
+import { LoginComponent } from './login/login.component';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,8 @@ import { ExpenseDetailModalComponent } from './components/expense-list/expense-d
     ExpenseDeleteModalComponent,
     ExpenseEditModalComponent,
     ExpenseDetailModalComponent,
+    LoginComponent,
+    LogoutComponent,
   ],
   imports: [
     BrowserModule,

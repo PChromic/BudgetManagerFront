@@ -10,18 +10,23 @@
       <ul class="navbar-nav mr-auto">
 
         <li class="nav-item">
-          <a class="nav-link" routerLink="/home">Home</a>
+          <a *ngIf="!loginService.isUserLoggedIn()" class="nav-link" routerLink="/login">Login</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/operations">Operations</a>
+          <a *ngIf="loginService.isUserLoggedIn()" class="nav-link" routerLink="/home">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/expenses">Expenses</a>
+          <a *ngIf="loginService.isUserLoggedIn()" class="nav-link" routerLink="/operations">Operations</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/reports">Reports</a>
+          <a *ngIf="loginService.isUserLoggedIn()" class="nav-link" routerLink="/expenses">Expenses</a>
         </li>
-
+        <li class="nav-item">
+          <a *ngIf="loginService.isUserLoggedIn()" class="nav-link" routerLink="/reports">Reports</a>
+        </li>
+        <li class="nav-item">
+          <a *ngIf="loginService.isUserLoggedIn()" class="nav-link" routerLink="/logout">Logout</a>
+        </li>
       </ul>
     </div>
   </nav>

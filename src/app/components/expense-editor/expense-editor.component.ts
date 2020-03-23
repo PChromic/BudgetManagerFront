@@ -44,6 +44,7 @@ export class ExpenseEditorComponent implements OnInit {
     setTimeout(() => {
       this.router.navigate(["/expenses"]);
     }, 4000);
+    this.expenseCreated = false;
   }
 
   onBack() {
