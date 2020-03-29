@@ -10,13 +10,13 @@ import {Expense} from '../domain/expense';
 export class UserService {
 
   private url: string;
-  public users: User[];
+  users: User[];
 
   constructor(private http: HttpClient) {
     this.url = environment.baseUrl + '/users';
-    this.findAll().subscribe(data => {
+ /*   this.findAll().subscribe(data => {
       this.users = data
-    });
+    });*/
   }
 
   public findAll(): Observable<User[]> {

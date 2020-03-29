@@ -11,24 +11,47 @@ export class AuthenticationService {
 
   private url: string;
   private users: User[];
+  private loggedUser: User;
 
   constructor(private userService: UserService) {
-    this.users = this.userService.users;
+    console.log('Initialized auth service');
+    this.userService.findAll()
+      .subscribe(data => {
+          this.users = data;
+        },
+        err => console.error(err),
+        () => console.log('done loading users'));
   }
 
-  authenticate(username, password) {
+  ngOnInit() {
 
-    if (this.filterUsers)
+  }
+
+  public authenticate(username, password) {
+    if (this.filterUsers(username, password)) {
+      console.log('validated');
       return true;
+    }
     return false;
   }
 
-  filterUsers(username, password) {
-    if (this.users.filter(user =>
-          user.name.toLocaleLowerCase().indexOf(username.toLowerCase()) !== -1)) {
+  private filterUsers(username, password) {
+    console.log('in filterUsers');
+    console.log(this.users.find(user => {
+      return user.name === username;
+    }));
 
+    if (this.users.find(user => {
+      return user.name === username;
+    })) {
+
+      this.loggedUser = this.users.find(user => {
+        return user.name === username;
+      });
       sessionStorage.setItem('name', username);
-      return true;
+      console.log(sessionStorage.length);
+      return this.loggedUser.password === password;
+      //return true;
     }
     else
       return false;
@@ -52,5 +75,6 @@ export class AuthenticationService {
 
   logOut() {
     sessionStorage.removeItem('name');
+    console.log(sessionStorage.length);
   }
 }

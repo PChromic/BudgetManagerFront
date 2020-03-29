@@ -1,21 +1,30 @@
 <div class="container" style="margin-top:70px">
-  <div *ngIf="!showForm">
-    <div>
-      User Name : <input type="text" name="username" [(ngModel)]="username">
-      Password : <input type="password" name="password" [(ngModel)]="password">
-    </div>
-    <div>
-      <button (click)=checkLogin() class="btn btn-success">
-        Login
-      </button>
-      <button (click)="showForm=true" class="btn btn-info">
-        Create
-      </button>
+  <div class="row">
+    <div *ngIf="!showForm" class="bg-light col-4 mx-auto">
+      <div *ngIf="invalidLogin" class="alert alert-danger text-center">
+        <p>Login and/or password are incorrect</p>
+      </div>
+      <form>
+        <div class="form-group">
+          <label for="nameLogin">Login:</label>
+          <input class="form-control" id="nameLogin" type="text" name="username" [(ngModel)]="username">
+        </div>
+        <div class="form-group">
+          <label for="passLogin">Password:</label>
+          <input class="form-control" id="passLogin" type="password" name="password" [(ngModel)]="password">
+        </div>
+        <button type="submit" (click)=checkLogin() class="btn btn-success">Login</button>
+      </form>
+      <hr/>
+      <div class="row justify-content-center">
+        <button (click)="showForm=true" class="btn" colspan="1">Create account</button>
+      </div>
     </div>
   </div>
+
   <div *ngIf="showForm" class="col-md-6">
     <h2 class="text-center">Add User</h2>
-    <form (ngSubmit)="createUser()">
+    <form (ngSubmit)="createUser()" class="needs-validation">
       <div class="form-group">
         <label for="name">Name:</label>
         <input type="name" [(ngModel)]="user.name" placeholder="Name" name="name" class="form-control" id="name">

@@ -10,13 +10,13 @@ import { Router } from '@angular/router';
 export class LogoutComponent implements OnInit {
 
   constructor(
-    private authentocationService: AuthenticationService,
+    private authService: AuthenticationService,
     private router: Router) {
 
   }
 
   ngOnInit() {
-    this.authentocationService.logOut();
+    this.authService.logOut();
     this.router.navigate(['login']);
   }
 

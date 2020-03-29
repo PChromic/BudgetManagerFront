@@ -17,11 +17,9 @@ export class LoginComponent implements OnInit {
   password = '';
   invalidLogin = false;
   showForm = false;
-  //test
-  testUsers: User[];
 
   constructor(private router: Router,
-              private loginservice: AuthenticationService,
+              private authService: AuthenticationService,
               private userService: UserService) {
   }
 
@@ -29,11 +27,13 @@ export class LoginComponent implements OnInit {
   }
 
   checkLogin() {
-    if (this.loginservice.authenticate(this.username, this.password)
-    ) {
+    console.log('in checkLogin');
+    if (this.authService.authenticate(this.username, this.password)) {
+      console.log("validated")
       this.router.navigate(['']);
       this.invalidLogin = false;
     } else
+      console.log("not validated")
       this.invalidLogin = true;
   }
 
@@ -45,5 +45,4 @@ export class LoginComponent implements OnInit {
     }, 4000);
     this.showForm = false;
   }
-
 }
