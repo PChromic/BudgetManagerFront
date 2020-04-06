@@ -3,7 +3,7 @@ import {NgModule} from '@angular/core';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {FooterComponent} from './components/footer/footer.component';
@@ -28,6 +28,7 @@ import { ExpenseEditModalComponent } from './components/expense-list/expense-edi
 import { ExpenseDetailModalComponent } from './components/expense-list/expense-detail-modal/expense-detail-modal.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
+import {HttpErrorInterceptor} from './components/http-error-interceptor/http-error-interceptor';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,15 @@ import { LogoutComponent } from './logout/logout.component';
     ReactiveFormsModule,
     NgxPaginationModule,
     ],
-  providers: [OperationService, FileService, ExpenseService],
+  providers: [
+    OperationService,
+    FileService,
+    ExpenseService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptor,
+      multi: true
+    }],
   bootstrap: [AppComponent],
 
   entryComponents: []
