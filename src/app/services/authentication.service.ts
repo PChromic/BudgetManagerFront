@@ -24,10 +24,15 @@ export class AuthenticationService {
   }
 
   ngOnInit() {
-
   }
 
   public authenticate(username, password) {
+    this.userService.findAll()
+      .subscribe(data => {
+          this.users = data;
+        },
+        err => console.error(err),
+        () => console.log('done loading users'));
     if (this.filterUsers(username, password)) {
       console.log('validated');
       return true;

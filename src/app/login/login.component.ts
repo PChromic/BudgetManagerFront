@@ -4,6 +4,7 @@ import {AuthenticationService} from '../services/authentication.service';
 import {User} from '../domain/user';
 import {UserService} from '../services/user.service';
 import {Expense} from '../domain/expense';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ import {Expense} from '../domain/expense';
 export class LoginComponent implements OnInit {
 
   user: User = new User();
-  username = 'javainuse';
+  username = '';
   password = '';
   invalidLogin = false;
   showForm = false;
@@ -27,15 +28,16 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  checkLogin() {
+  checkLogin(f : NgForm) {
     console.log('in checkLogin');
     if (this.authService.authenticate(this.username, this.password)) {
-      console.log("validated")
+      console.log("validated");
       this.router.navigate(['']);
       this.invalidLogin = false;
     } else
-      console.log("not validated")
+      console.log("not validated");
       this.invalidLogin = true;
+    f.reset();
   }
 
   createUser() {
@@ -43,7 +45,11 @@ export class LoginComponent implements OnInit {
 
     setTimeout(() => {
       this.router.navigate(['/login']);
+      this.showForm = false;
+      this.invalidLogin = false;
+
     }, 4000);
-    this.showForm = false;
+
   }
+
 }

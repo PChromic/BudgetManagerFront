@@ -4,7 +4,7 @@
       <div *ngIf="invalidLogin" class="alert alert-danger text-center">
         <p>Login and/or password are incorrect</p>
       </div>
-      <form>
+      <form #f="ngForm" (ngSubmit)="checkLogin(f)" novalidate>
         <div class="form-group">
           <label for="nameLogin">Login:</label>
           <input class="form-control" id="nameLogin" type="text" name="username" [(ngModel)]="username">
@@ -13,7 +13,7 @@
           <label for="passLogin">Password:</label>
           <input class="form-control" id="passLogin" type="password" name="password" [(ngModel)]="password">
         </div>
-        <button type="submit" (click)=checkLogin() class="btn btn-success">Login</button>
+        <button type="submit" class="btn btn-success">Login</button>
       </form>
       <hr/>
       <div class="row justify-content-center">
