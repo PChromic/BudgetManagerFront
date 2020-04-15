@@ -4,7 +4,7 @@ import {AuthenticationService} from '../services/authentication.service';
 import {User} from '../domain/user';
 import {UserService} from '../services/user.service';
 import {Expense} from '../domain/expense';
-import {NgForm} from '@angular/forms';
+import {FormBuilder, FormGroup, NgForm, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -13,43 +13,73 @@ import {NgForm} from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
+  registerForm: FormGroup;
   user: User = new User();
   username = '';
   password = '';
   invalidLogin = false;
-  showForm = false;
-  error = false;
+  showLoginForm = false;
+  userDuplicated = false;
+  newUserSubmitted = false;
 
   constructor(private router: Router,
               private authService: AuthenticationService,
-              private userService: UserService) {
+              private userService: UserService,
+              private formBuilder: FormBuilder) {
   }
 
   ngOnInit() {
+    this.registerForm = this.formBuilder.group({
+      username: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(3)]]
+    });
   }
 
-  checkLogin(f : NgForm) {
+  checkLogin() {
     console.log('in checkLogin');
-    if (this.authService.authenticate(this.username, this.password)) {
-      console.log("validated");
+
+    let authorized = this.authService.authenticate(this.username, this.password);
+    if (authorized) {
+      console.log('validated');
       this.router.navigate(['']);
       this.invalidLogin = false;
-    } else
-      console.log("not validated");
+    }
+    else {
+      console.log('not validated');
       this.invalidLogin = true;
-    f.reset();
+    }
+  }
+
+  get f() {
+    return this.registerForm.controls;
   }
 
   createUser() {
-    this.userService.save(this.user).subscribe();
-
-    setTimeout(() => {
-      this.router.navigate(['/login']);
-      this.showForm = false;
-      this.invalidLogin = false;
-
-    }, 4000);
-
+    this.newUserSubmitted = true;
+    if (this.isDuplicate(this.user.name))
+      this.userDuplicated = true;
+    else {
+     // this.registerForm.controls['username'].valid && this.registerForm.controls['password'].valid;
+      this.userService.save(this.user).subscribe();
+      alert ("User created successfully! Click OK to move to login page.")
+      setTimeout(() => {
+        this.afterUserCreation();
+      }, 2500);
+    }
   }
 
+  private isDuplicate(username: string) {
+    console.log(this.authService.isUserDuplicated(username));
+    return this.authService.isUserDuplicated(username);
+  }
+
+  private afterUserCreation() {
+    this.userDuplicated = false;
+    this.showLoginForm = false;
+    this.invalidLogin = false;
+    this.newUserSubmitted = false;
+    this.registerForm.reset();
+    this.authService.updateUsers();
+    this.router.navigate(['/login']);
+  }
 }
